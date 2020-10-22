@@ -29,5 +29,5 @@ Gestión de socios: Asociación de juegos de mesa (Frontend)
 
 ## Project Diagram
 
-https://imgur.com/a/QUk7pgM
+![Diagram](https://imgur.com/a/QUk7pgM "Diagram")
 
