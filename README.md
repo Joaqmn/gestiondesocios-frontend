@@ -15,7 +15,7 @@ Gestión de socios: Asociación de juegos de mesa (Frontend)
 
 ![Inventario y Perfil](https://i.imgur.com/MZ9WwJF.png "Inventory_Profile")
 
-##Inventory + Add Game
+## Inventory + Add Game
 
 ![Inventario y añadir juego](https://i.imgur.com/FSZSHAa.png "Inventory_AddGame")
 
