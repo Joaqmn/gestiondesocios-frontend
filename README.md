@@ -5,31 +5,19 @@ Gestión de socios: Asociación de juegos de mesa (Frontend)
 
 ## Login
 
-![Login](https://i.imgur.com/nkwzNiQ.png "Login")
-
-## Calendar
-
-![Calendario](https://i.imgur.com/BI0lidu.png "Calendario")
-
-## Dashboard
-
-![Panel de control](https://i.imgur.com/OOOSEcY.png "Panel de control")
-
-## Landing Page
-
-![Landing](https://i.imgur.com/WsTArEE.png "Landing")
-
-## Ranking
-
-![Ranking](https://i.imgur.com/uR3Nd54.png "Ranking")
-
-## Profile
-
-![Perfil](https://i.imgur.com/tOL4isn.png "Perfil")
+![Login](https://i.imgur.com/UYaztoY.png "Login")
 
 ## Inventory
 
-![Inventario](https://i.imgur.com/sSDCyIV.png "Inventario")
+![Inventario](https://i.imgur.com/ePJMhF1.png "Inventory")
+
+## Inventory + Profile
+
+![Inventario y Perfil](https://i.imgur.com/MZ9WwJF.png "Inventory_Profile")
+
+##Inventory + Add Game
+
+![Inventario y añadir juego](https://i.imgur.com/FSZSHAa.png "Inventory_AddGame")
 
 ## Project Diagram
 
