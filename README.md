@@ -7,11 +7,11 @@ Gestión de socios: Asociación de juegos de mesa (Frontend)
 
 ![Login](https://i.imgur.com/nkwzNiQ.png "Login")
 
-## Calendario
+## Calendar
 
 ![Calendario](https://i.imgur.com/BI0lidu.png "Calendario")
 
-## Panel de control
+## Dashboard
 
 ![Panel de control](https://i.imgur.com/OOOSEcY.png "Panel de control")
 
@@ -23,11 +23,16 @@ Gestión de socios: Asociación de juegos de mesa (Frontend)
 
 ![Ranking](https://i.imgur.com/uR3Nd54.png "Ranking")
 
-## Perfil
+## Profile
 
-![Perfil](https://i.imgur.com/LmFzgjm.png "Perfil")
+![Perfil](https://i.imgur.com/tOL4isn.png "Perfil")
+
+## Inventory
+
+![Inventario](https://i.imgur.com/sSDCyIV.png "Inventario")
 
 ## Project Diagram
 
 ![Diagram](https://i.imgur.com/Ynfbfyi.png "Diagram")
+
 
