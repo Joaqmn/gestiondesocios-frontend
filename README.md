@@ -9,15 +9,15 @@ Gestión de socios: Asociación de juegos de mesa (Frontend)
 
 ## Inventory
 
-![Inventario](https://i.imgur.com/ePJMhF1.png "Inventory")
+![Inventario](https://i.imgur.com/NIT26aI.png "Inventory")
 
 ## Inventory + Profile
 
-![Inventario y Perfil](https://i.imgur.com/MZ9WwJF.png "Inventory_Profile")
+![Inventario y Perfil](https://i.imgur.com/OWJFGfY.png "Inventory_Profile")
 
 ## Inventory + Add Game
 
-![Inventario y añadir juego](https://i.imgur.com/FSZSHAa.png "Inventory_AddGame")
+![Inventario y añadir juego](https://i.imgur.com/mkfu955.png "Inventory_AddGame")
 
 ## Project Diagram
 
