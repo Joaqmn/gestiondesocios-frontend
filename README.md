@@ -1,26 +1,24 @@
 # fs5-gestiondesocios-frontend
-Gestión de socios: Asociación de juegos de mesa (Frontend)
 
-# Mockups
+## Project setup
+```
+npm install
+```
 
-## Login
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-![Login](https://i.imgur.com/UYaztoY.png "Login")
+### Compiles and minifies for production
+```
+npm run build
+```
 
-## Inventory
+### Lints and fixes files
+```
+npm run lint
+```
 
-![Inventario](https://i.imgur.com/NIT26aI.png "Inventory")
-
-## Inventory + Profile
-
-![Inventario y Perfil](https://i.imgur.com/OWJFGfY.png "Inventory_Profile")
-
-## Inventory + Add Game
-
-![Inventario y añadir juego](https://i.imgur.com/mkfu955.png "Inventory_AddGame")
-
-## Project Diagram
-
-![Diagram](https://i.imgur.com/Ynfbfyi.png "Diagram")
-
-
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
