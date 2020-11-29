@@ -32,12 +32,6 @@ export default {
       required: false,
     },
   },
-
-  methods: {
-    setPlaceholder() {
-      return this.typeInput == "text" ? "example@gmail.com" : "";
-    },
-  },
 };
 </script>
 
