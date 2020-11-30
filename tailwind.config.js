@@ -1,5 +1,11 @@
 module.exports = {
-  theme: {},
+  theme: {
+    extend: {
+      fontFamily: {
+        Kalam: ["Kalam"]
+      }
+    }
+  },
   variants: {},
   plugins: [],
   purge: {
