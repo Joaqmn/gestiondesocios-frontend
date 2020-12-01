@@ -2,7 +2,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        Kalam: ["Kalam"]
+        Nunito: ["Nunito"]
       }
     }
   },

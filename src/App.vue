@@ -13,12 +13,14 @@
       placeHolderInput="Introduzca su contraseña"
     />
     <InputText typeInput="text" />
+    <RadioButton />
   </div>
 </template>
 
 <script>
 import LoginButton from "./components/LoginButton.vue";
 import InputText from "./components/InputText";
+import RadioButton from "./components/RadioButton";
 
 export default {
   name: "App",
@@ -29,11 +31,12 @@ export default {
   },
   components: {
     LoginButton,
-    InputText
+    InputText,
+    RadioButton
   }
 };
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 </style>
