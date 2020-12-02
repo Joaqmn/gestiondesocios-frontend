@@ -21,17 +21,17 @@ export default {
     typeInput: {
       type: String,
       required: true,
-      validator: (v) => v == "text" || v == "password",
+      validator: v => v == "text" || v == "password"
     },
     nameInput: {
       type: String,
-      required: false,
+      required: false
     },
     placeHolderInput: {
       type: String,
-      required: false,
-    },
-  },
+      required: false
+    }
+  }
 };
 </script>
 
