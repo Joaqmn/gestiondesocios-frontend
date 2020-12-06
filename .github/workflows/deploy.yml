@@ -22,4 +22,4 @@ jobs:
                       cd fs5-gestiondesocios-frontend/
                       git pull https://github.com/fullstacktf/fs5-gestiondesocios-frontend.git
                       docker build -t vue .
-                      docker run -it -p 8080:80 --rm --name dockerize-vuejs-app-1 vue
+                      docker run -p 8080:80 --rm --name dockerize-vuejs-app-1 vue
