@@ -1,26 +1,11 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
-    <LoginButton />
-    <InputText
-      typeInput="text"
-      nameInput="Email"
-      placeHolderInput="Introduzca su email"
-    />
-    <InputText
-      typeInput="password"
-      nameInput="Password"
-      placeHolderInput="Introduzca su contraseña"
-    />
-    <InputText typeInput="text" />
-    <CheckButton />
+    <Login />
   </div>
 </template>
 
 <script>
-import LoginButton from "./components/LoginButton.vue";
-import InputText from "./components/InputText";
-import CheckButton from "./components/CheckButton";
+import Login from "./views/Login";
 
 export default {
   name: "App",
@@ -30,9 +15,7 @@ export default {
     };
   },
   components: {
-    LoginButton,
-    InputText,
-    CheckButton
+    Login
   }
 };
 </script>

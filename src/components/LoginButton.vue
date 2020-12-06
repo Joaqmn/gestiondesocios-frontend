@@ -1,6 +1,7 @@
 <template>
   <button
-    class="w-52 mx-2 font-Nunito font-bold text-white text-xl border-solid border-2 border-gray-500 rounded-md p-2 bg-red-800 hover:bg-red-700 focus:outline-none"
+    class="w-80 font-Nunito font-bold text-white text-xl border-solid 
+    rounded-md p-2 hover:bg-red-200 focus:outline-none"
     id="loginButton"
   >
     Login
@@ -16,6 +17,10 @@ export default {
 <style>
 #loginButton {
   box-shadow: 3px 3px #999;
+  background-color: #bb0e2e;
+}
+#loginButton:hover {
+  background-color: #960923;
 }
 #loginButton:active {
   box-shadow: 5px 5px #666;
