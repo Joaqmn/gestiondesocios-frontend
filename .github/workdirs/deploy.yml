@@ -1,0 +1,25 @@
+name: Deploy to Digital Ocean droplet
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to droplet using SSH
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  password: ${{ secrets.PRIVATE_KEY }}
+                  debug: true
+                  script: |
+                      cd fs5-gestiondesocios-frontend/
+                      git pull https://github.com/fullstacktf/fs5-gestiondesocios-frontend.git
+                      docker build -t vue .
+                      docker run -it -p 8080:80 --rm --name dockerize-vuejs-app-1 vue
