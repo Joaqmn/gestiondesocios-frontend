@@ -13,14 +13,14 @@
       placeHolderInput="Introduzca su contraseña"
     />
     <InputText typeInput="text" />
-    <RadioButton />
+    <CheckButton />
   </div>
 </template>
 
 <script>
 import LoginButton from "./components/LoginButton.vue";
 import InputText from "./components/InputText";
-import RadioButton from "./components/RadioButton";
+import CheckButton from "./components/CheckButton";
 
 export default {
   name: "App",
@@ -32,7 +32,7 @@ export default {
   components: {
     LoginButton,
     InputText,
-    RadioButton
+    CheckButton
   }
 };
 </script>
