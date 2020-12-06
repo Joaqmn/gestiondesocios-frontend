@@ -14,6 +14,7 @@
     />
     <InputText typeInput="text" />
     <RadioButton />
+    <UserDropdown />
   </div>
 </template>
 
@@ -21,6 +22,7 @@
 import LoginButton from "./components/LoginButton.vue";
 import InputText from "./components/InputText";
 import RadioButton from "./components/RadioButton";
+import UserDropdown from "./components/UserDropdown";
 
 export default {
   name: "App",
@@ -32,7 +34,8 @@ export default {
   components: {
     LoginButton,
     InputText,
-    RadioButton
+    RadioButton,
+    UserDropdown
   }
 };
 </script>
