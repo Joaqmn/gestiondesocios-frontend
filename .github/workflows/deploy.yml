@@ -1,8 +1,9 @@
 name: Deploy to Digital Ocean droplet
 on:
-  push:
-      branches:
+    push:
+        branches:
             - main
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -17,4 +18,8 @@ jobs:
                   script: |
                       cd fs5-gestiondesocios-frontend/
                       git pull https://github.com/fullstacktf/fs5-gestiondesocios-frontend.git
-                      docker-compose build
+                      docker stop vue
+                      docker rm vue
+                      docker rmi dockerize-vuejs-app-1
+                      docker build -t vue .
+                      docker run -d -p 80:80 --rm --name dockerize-vuejs-app-1 vue
