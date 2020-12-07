@@ -1,6 +1,6 @@
 name: Deploy to Digital Ocean droplet
 on:
-    pull-request:
+    pull_request:
         types: [closed]
 
 jobs:
