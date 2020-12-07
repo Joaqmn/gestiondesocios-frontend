@@ -1,11 +1,11 @@
 name: Deploy to Digital Ocean droplet
 on:
-    push:
-        branches:
-            - main
+    pull-request:
+        types: [closed]
 
 jobs:
     deploy:
+        if: github.event.pull_request.merged == true
         runs-on: ubuntu-latest
         steps:
             - name: Deploy to droplet using SSH
