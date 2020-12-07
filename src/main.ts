@@ -20,7 +20,7 @@ import Inventory from "./views/Inventory.vue";
 import NotFound from "./views/NotFound.vue";
 Vue.use(VueRouter);
 const routes = [
-  { path: "/", component: App, name: "main" },
+  { path: "/", component: App, name: "main", redirect: "/login" },
   { path: "/login", component: App, name: "login" },
   { path: "/inventory", component: Inventory, name: "inventory" }
 ];
