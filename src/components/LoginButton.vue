@@ -16,7 +16,7 @@ export default {
 
 <style>
 #loginButton {
-  box-shadow: 3px 3px #999;
+  box-shadow: 6px 6px 30px #999;
   background-color: #bb0e2e;
 }
 #loginButton:hover {

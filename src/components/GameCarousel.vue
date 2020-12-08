@@ -1,10 +1,11 @@
 <template>
-  <div id="carouselContainer" class="wrapper">
+  <div id="carouselContainer" class="wrapper bg-gray-400">
     <splide :options="options" @splide:moved="moved">
       <splide-slide v-for="slide in slides" :key="slide.src">
         <img :src="slide.src" alt="slide.alt" />
       </splide-slide>
     </splide>
+    <a class="align-top justify-center" href="">{{ gameName }}</a>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
 
   data() {
     return {
+      gameName: "Juego 1",
       options: {
         rewind: true,
         gap: "1rem",
@@ -39,7 +41,10 @@ export default {
 
 <style>
 #carouselContainer {
-    width: 200px;
-    height: 150px;
+  width: 200px;
+  height: 150px;
+  box-shadow: 3px 3px 10px #666;
+  border: 11px outset #A42417;
+  border-radius: 23px;
 }
 </style>
