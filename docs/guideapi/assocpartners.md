@@ -2,13 +2,13 @@
 title: Assoc Partners endpoints
 ---
 
-## Show Game
+## Show Partner
 
-  Returns json data about a single game.
+  Returns json data about a single partner.
 
 * **URL**
 
-  /api/games/:id
+  /api/assoc_partners/:id
 
 * **Method:**
 
@@ -27,12 +27,12 @@ title: Assoc Partners endpoints
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"id":2,"game_name":"Game Prueba","rating":7.44997,"id_owner":1,"entry_date":"2020-11-02 16:56:58","disponibility":true,"comments":""}`
+    **Content:** `{"id":1,"partner_name":"Pepe"}`
  
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "Game not found" }`
+    **Content:** `{ error : "Partner not found" }`
 
 * **Sample Call:**
 
@@ -49,13 +49,13 @@ title: Assoc Partners endpoints
 
   
 
-## Show Games
+## Show Partners
 
-  Returns json data about all games.
+  Returns json data about all partners.
 
 * **URL**
 
-  /api/games
+  /api/assoc_partners
 
 * **Method:**
 
@@ -72,7 +72,7 @@ title: Assoc Partners endpoints
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":2,"game_name":"Game Prueba","rating":7.44997,"id_owner":1,"entry_date":"2020-11-02 16:56:58","disponibility":true,"comments":""}, ...`
+    **Content:** `[{"id":1,"partner_name":"Pepe"}, ...`
  
 * **Error Response:**
 
@@ -89,13 +89,13 @@ title: Assoc Partners endpoints
     });
   ```
 
-## Insert Game
+## Insert Partner
 
-  Inserts a new game.
+  Inserts a new partner.
 
 * **URL**
 
-  /api/games
+  /api/assoc_partners
 
 * **Method:**
 
@@ -108,18 +108,18 @@ title: Assoc Partners endpoints
 * **Data Params**
 
   *
-    **Content:** `{"id":int,"game_name":string,"rating":float,"id_owner":int,"entry_date":string,"disponibility":bool,"comments":string}`
+    **Content:** `{"id":uint, "partner_name":string}`
  
 
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":2,"game_name":"Game Prueba","rating":7.44997,"id_owner":1,"entry_date":"2020-11-02 16:56:58","disponibility":true,"comments":""}, ...`
+    **Content:** `[{"id":1,"partner_name":"Pepe"}, ...`
  
 * **Error Response:**
 
   * **Code:** 400 <br />
-    **Content:** `Error inserting game`
+    **Content:** `Error inserting partner`
 
 * **Sample Call:**
 
@@ -134,13 +134,13 @@ title: Assoc Partners endpoints
     });
   ```
 
-## Delete Game
+## Delete Partner
 
-  Delete a game.
+  Delete a partner.
 
 * **URL**
 
-  /api/games/:id
+  /api/assoc_partners/:id
 
 * **Method:**
 
@@ -159,12 +159,12 @@ title: Assoc Partners endpoints
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `Game removed successfully`
+    **Content:** `Partner removed successfully`
  
 * **Error Response:**
 
   * **Code:** 404 <br />
-    **Content:** `Error removing the game, might not exist`
+    **Content:** `Error removing partner, might not exist`
 
 * **Sample Call:**
 
@@ -179,13 +179,13 @@ title: Assoc Partners endpoints
     });
   ```
 
-## Update Game
+## Update Partner
 
-  Update an existing game.
+  Update an existing partner.
 
 * **URL**
 
-  /api/games/:id
+  /api/assoc_partners/:id
 
 * **Method:**
 
@@ -200,18 +200,18 @@ title: Assoc Partners endpoints
 * **Data Params**
 
   *
-    **Content:** `{"id":int,"game_name":string,"rating":float,"id_owner":int,"entry_date":string,"disponibility":bool,"comments":string}`
+    **Content:** `{"id":uint, "partner_name":string}`
  
 
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"id":2,"game_name":"Game Prueba 2","rating":7.44997,"id_owner":1,"entry_date":"2020-11-02 16:56:58","disponibility":true,"comments":""}`
+    **Content:** `{"id":1,"partner_name":"Pepe"}`
  
 * **Error Response:**
 
   * **Code:** 404 <br />
-    **Content:** `Game not found`
+    **Content:** `Partner not found`
 
 * **Sample Call:**
 
