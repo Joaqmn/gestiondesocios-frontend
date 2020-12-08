@@ -1,11 +1,15 @@
 <template>
-  <div id="carouselContainer" class="wrapper bg-gray-400">
+  <div id="carouselContainer" class="wrapper bg-gray-300 text-red-800">
     <splide :options="options" @splide:moved="moved">
       <splide-slide v-for="slide in slides" :key="slide.src">
         <img :src="slide.src" alt="slide.alt" />
       </splide-slide>
     </splide>
-    <a class="align-top justify-center" href="">{{ gameName }}</a>
+    <a
+      class="align-top justify-center font-Nunito font-semibold"
+      href=""
+      >{{ gameName }}</a
+    >
   </div>
 </template>
 
@@ -41,10 +45,10 @@ export default {
 
 <style>
 #carouselContainer {
-  width: 200px;
-  height: 150px;
+  width: 400px;
+  height: 260px;
   box-shadow: 3px 3px 10px #666;
-  border: 11px outset #A42417;
+  border: 11px outset #a42417;
   border-radius: 23px;
 }
 </style>
