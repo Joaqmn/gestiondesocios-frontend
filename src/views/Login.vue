@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .cont {
   background-image: url("../assets/images/wave.svg");
   background-repeat: no-repeat;

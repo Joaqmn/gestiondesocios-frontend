@@ -1,8 +1,9 @@
 <template>
-  <div class="dropdown inline-block relative">
+  <div class="dropdown inline-block absolute top-2 right-8">
     <button
       aria-label="buttonHover"
-      class="w-48 h-14 bg-red-800 text-white font-semibold py-2 px-4 rounded inline-flex items-center"
+      style="background: #bb0e2e"
+      class="w-48 h-14 text-white font-semibold py-2 px-4 rounded inline-flex items-center"
     >
       <span
         >{{ userName }}<font-awesome-icon icon="user-circle" id="usercircle"
