@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>{{ games[0].game_name }}</div>
 </template>
 
 <script>
@@ -11,10 +11,8 @@ export default {
   },
   beforeCreate: function() {
     getGames().then(resp => {
-      console.log(resp);
       if (resp.status === 200) {
-        console.log(resp);
-        //this.games = resp.data;
+        this.games = resp.data;
       }
     });
   }
