@@ -1,10 +1,12 @@
 <template>
   <div>
-    <label class="flex justify-start items-start">
+    <label for="Todos" class="flex justify-start items-start">
       <div
         class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
       >
         <input
+          aria-label="inputTodos"
+          checked="true"
           type="checkbox"
           id="checkbutton1"
           class="opacity-0 absolute"
@@ -24,6 +26,7 @@
         class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
       >
         <input
+          aria-label="inputDisponible"
           type="checkbox"
           id="checkbutton2"
           class="opacity-0 absolute"
@@ -43,6 +46,7 @@
         class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
       >
         <input
+        aria-label="inputNoDisponible"
           type="checkbox"
           id="checkbutton3"
           class="opacity-0 absolute"

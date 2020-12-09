@@ -2,17 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueRouter from "vue-router";
 import "@/assets/css/tailwind.css";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { faPlug } from "@fortawesome/free-solid-svg-icons";
-import { faAlignJustify } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faUserCircle);
-library.add(faAlignJustify);
-library.add(faPlug);
-
-Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.config.productionTip = false;
 
 import Login from "./views/Login.vue";
@@ -22,7 +12,7 @@ Vue.use(VueRouter);
 const routes = [
   { path: "/", component: App, name: "main", redirect: "/login" },
   { path: "/login", component: App, name: "login" },
-  { path: "/inventory", component: Inventory, name: "inventory" }
+  { path: "/inventory", component: Inventory, name: "inventory" },
 ];
 
 const router = new VueRouter({

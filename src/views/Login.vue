@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import LoginButton from "../components/LoginButton.vue";
-import InputText from "../components/InputText";
+import LoginButton from "../components/loginButton/LoginButton.vue";
+import InputText from "../components/inputText/InputText";
 export default {
   name: "App",
   components: {
