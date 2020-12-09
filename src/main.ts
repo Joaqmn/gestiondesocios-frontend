@@ -8,13 +8,11 @@ Vue.config.productionTip = false;
 import Login from "./views/Login.vue";
 import Inventory from "./views/Inventory.vue";
 import NotFound from "./views/NotFound.vue";
-import testcomponent from "./views/testcomponent.vue"
 Vue.use(VueRouter);
 const routes = [
   { path: "/", component: App, name: "main", redirect: "/login" },
   { path: "/login", component: App, name: "login" },
   { path: "/inventory", component: Inventory, name: "inventory" },
-  { path: "/testcomponent", component: testcomponent, name: "testcomponent"}
 ];
 
 const router = new VueRouter({
