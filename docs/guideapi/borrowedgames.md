@@ -2,60 +2,13 @@
 title: Borrowed Games endpoints
 ---
 
-## Show Game
+## Show Borrowed Games
 
-  Returns json data about a single game.
-
-* **URL**
-
-  /api/games/:id
-
-* **Method:**
-
-  `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `id=[integer]`
-
-* **Data Params**
-
-  None
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `{"id":2,"game_name":"Game Prueba","rating":7.44997,"id_owner":1,"entry_date":"2020-11-02 16:56:58","disponibility":true,"comments":""}`
- 
-* **Error Response:**
-
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "Game not found" }`
-
-* **Sample Call:**
-
-  ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
-  ```
-
-  
-
-## Show Games
-
-  Returns json data about all games.
+  Returns json data about all borrowed games.
 
 * **URL**
 
-  /api/games
+  /api/borrowedgames
 
 * **Method:**
 
@@ -72,7 +25,7 @@ title: Borrowed Games endpoints
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":2,"game_name":"Game Prueba","rating":7.44997,"id_owner":1,"entry_date":"2020-11-02 16:56:58","disponibility":true,"comments":""}, ...`
+    **Content:** `[{id_game:1, id_borrower:1, borrow_date:"10-10-2020}, ...`
  
 * **Error Response:**
 
@@ -89,13 +42,13 @@ title: Borrowed Games endpoints
     });
   ```
 
-## Insert Game
+## Insert Borrowed Game
 
-  Inserts a new game.
+  Inserts a new borrowed game.
 
 * **URL**
 
-  /api/games
+  /api/borrowedgames
 
 * **Method:**
 
@@ -108,18 +61,18 @@ title: Borrowed Games endpoints
 * **Data Params**
 
   *
-    **Content:** `{"id":int,"game_name":string,"rating":float,"id_owner":int,"entry_date":string,"disponibility":bool,"comments":string}`
+    **Content:** `{id_game:uint, id_borrower:uint, borrow_date:string}`
  
 
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":2,"game_name":"Game Prueba","rating":7.44997,"id_owner":1,"entry_date":"2020-11-02 16:56:58","disponibility":true,"comments":""}, ...`
+    **Content:** `[{id_game:1, id_borrower:1, borrow_date:"10-10-2020}, ...`
  
 * **Error Response:**
 
   * **Code:** 400 <br />
-    **Content:** `Error inserting game`
+    **Content:** `Error inserting borrowed game`
 
 * **Sample Call:**
 
@@ -134,13 +87,13 @@ title: Borrowed Games endpoints
     });
   ```
 
-## Delete Game
+## Delete Borrowed Game
 
-  Delete a game.
+  Delete a borrowed game.
 
 * **URL**
 
-  /api/games/:id
+  /api/borrowedgames/:id
 
 * **Method:**
 
@@ -159,59 +112,12 @@ title: Borrowed Games endpoints
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `Game removed successfully`
+    **Content:** `Borrowed Game removed successfully`
  
 * **Error Response:**
 
   * **Code:** 404 <br />
-    **Content:** `Error removing the game, might not exist`
-
-* **Sample Call:**
-
-  ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
-  ```
-
-## Update Game
-
-  Update an existing game.
-
-* **URL**
-
-  /api/games/:id
-
-* **Method:**
-
-  `PUT`
-  
-*  **URL Params**
- 
-   **Required:**
- 
-   `id=[integer]`
-
-* **Data Params**
-
-  *
-    **Content:** `{"id":int,"game_name":string,"rating":float,"id_owner":int,"entry_date":string,"disponibility":bool,"comments":string}`
- 
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `{"id":2,"game_name":"Game Prueba 2","rating":7.44997,"id_owner":1,"entry_date":"2020-11-02 16:56:58","disponibility":true,"comments":""}`
- 
-* **Error Response:**
-
-  * **Code:** 404 <br />
-    **Content:** `Game not found`
+    **Content:** `Error removing the borrowed game, might not exist`
 
 * **Sample Call:**
 
