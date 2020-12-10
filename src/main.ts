@@ -6,7 +6,7 @@ import VueTailwind from "vue-tailwind";
 const settings = {
   TTable: {
     classes: {
-      table: "shadow min-w-full w-4/6 divide-y divide-gray-200",
+      table: "shadow w-11/12 ml-28 divide-y divide-gray-200",
       tbody: "bg-white divide-y divide-gray-200",
       td: "px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700",
       theadTh:
@@ -29,6 +29,12 @@ const settings = {
     disabledButton: "opacity-25 w-full h-full cursor-not-allowed",
     button: "hover:bg-gray-200 w-full h-full",
     ellipsis: ""
+  },
+  TInput: {
+    fixedClasses:
+      "w-5/6 h-8 px-3 py-2 transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed",
+    classes:
+      "text-black placeholder-gray-400 bg-white border-gray-300 focus:border-blue-500 "
   }
 };
 

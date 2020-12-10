@@ -1,7 +1,11 @@
 <template>
-  <div class="flex h-screen cont">
+  <div class="flex h-screen cont w-full border-4">
+    <div class="mt-36 ml-8 w-1/6 absolute">
+      <t-input placeholder="Search game..." name="my-input" v-model="search" />
+    </div>
     <UserDropdown />
-    <div class="ml-72 mt-5 w-10/12">
+
+    <div class="ml-80 mt-7 w-5/6 border-2 border-black">
       <img
         class="object-contain h-24 w-full mb-5"
         src="../assets/images/logo.png"
@@ -14,10 +18,62 @@
           'Rating',
           'ID Owner',
           'Date Creation',
-          'Disponibility'
+          'Disponibility',
+          ''
         ]"
         :data="displayedPosts"
-      ></t-table>
+      >
+        <template slot="row" slot-scope="{ trClass, tdClass, rowIndex, row }">
+          <tr :class="[trClass, rowIndex % 2 === 0 ? 'bg-gray-100' : '']">
+            <td :class="[tdClass]">
+              {{ row.id }}
+            </td>
+            <td :class="[tdClass]">
+              {{ row.game_name }}
+            </td>
+            <td :class="[tdClass]">
+              {{ row.rating }}
+            </td>
+            <td :class="[tdClass]">
+              {{ row.id_owner }}
+            </td>
+            <td :class="[tdClass]">
+              {{ row.entry_date }}
+            </td>
+            <td :class="[tdClass]">
+              {{ row.disponibility }}
+            </td>
+            <td :class="[tdClass, 'text-right']">
+              <t-dropdown>
+                <template slot="button">
+                  <svg
+                    version="1.1"
+                    viewBox="0 0 16 16"
+                    class="text-gray-600 fill-current svg-icon svg-fill"
+                    heigth="20"
+                    style="width: 20px;"
+                  >
+                    <path
+                      pid="0"
+                      d="M13 7a2 2 0 1 1 .001 3.999A2 2 0 0 1 13 7zM8 7a2 2 0 1 1 .001 3.999A2 2 0 0 1 8 7zM3 7a2 2 0 1 1 .001 3.999A2 2 0 0 1 3 7z"
+                    />
+                  </svg>
+                </template>
+                <button
+                  class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
+                >
+                  Edit
+                </button>
+                <button
+                  class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
+                >
+                  Delete
+                </button>
+              </t-dropdown>
+            </td>
+          </tr>
+        </template>
+      </t-table>
       <t-pagination
         :total-items="games.length"
         :per-page="perPage"
@@ -35,9 +91,10 @@ export default {
   name: "Inventory",
   data() {
     return {
+      search: "",
       games: [],
       currentPage: 1,
-      perPage: 19,
+      perPage: 12,
       pages: []
     };
   },
@@ -61,7 +118,12 @@ export default {
   },
   computed: {
     displayedPosts() {
-      return this.paginate(this.games);
+      return this.paginate(this.filteredList);
+    },
+    filteredList() {
+      return this.games.filter(game => {
+        return game.game_name.toLowerCase().includes(this.search.toLowerCase());
+      });
     }
   },
   watch: {

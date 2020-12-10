@@ -50,7 +50,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .dropdown:hover > .dropdown-content {
   display: block;
 }

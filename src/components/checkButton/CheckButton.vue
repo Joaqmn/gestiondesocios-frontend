@@ -46,7 +46,7 @@
         class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
       >
         <input
-        aria-label="inputNoDisponible"
+          aria-label="inputNoDisponible"
           type="checkbox"
           id="checkbutton3"
           class="opacity-0 absolute"
@@ -85,7 +85,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 input:checked + svg {
   display: block;
 }

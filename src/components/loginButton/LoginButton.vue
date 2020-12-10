@@ -14,7 +14,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #loginButton {
   box-shadow: 3px 3px #999;
   background-color: #bb0e2e;
