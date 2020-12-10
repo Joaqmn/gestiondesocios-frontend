@@ -6,7 +6,7 @@
     </div>
     <UserDropdown />
 
-    <div class="ml-80 mt-7 w-5/6">
+    <div class="2xl:ml-80 xl:ml-48  mt-7 w-5/6">
       <img
         class="object-contain h-24 w-full mb-5"
         src="../assets/images/logo.png"
@@ -96,7 +96,7 @@ export default {
       search: "",
       games: [],
       currentPage: 1,
-      perPage: 12,
+      perPage: 10,
       pages: [],
       checkedValue: 1
     };
@@ -139,6 +139,15 @@ export default {
           return game.disponibility == false;
         }
       });
+    },
+    formattedSrc() {
+      const screenWidth = screen.width;
+      console.log(screenWidth);
+      if (screenWidth > 1200) {
+        return 10; //function to transform your src to large
+      } else {
+        return 15;
+      }
     }
   },
   watch: {

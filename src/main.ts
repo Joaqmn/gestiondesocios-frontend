@@ -46,6 +46,7 @@ Vue.config.productionTip = false;
 import Inventory from "./views/Inventory.vue";
 import NotFound from "./views/NotFound.vue";
 import ComponentTest from "./views/ComponentTest.vue";
+Vue.use(VueTailwind, settings);
 Vue.use(VueRouter);
 const routes = [
   { path: "/", component: App, name: "main", redirect: "/login" },
