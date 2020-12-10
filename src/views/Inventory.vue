@@ -45,7 +45,7 @@
               {{ row.disponibility }}
             </td>
             <td :class="[tdClass, 'text-right']">
-              <t-dropdown>
+              <t-dropdown class="origin-top-left">
                 <template slot="button">
                   <svg
                     version="1.1"
@@ -63,12 +63,20 @@
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
                 >
-                  Edit
+                  Edit<font-awesome-icon
+                    class="float-right"
+                    icon="pencil-alt"
+                    id="pencil-alt"
+                  />
                 </button>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
                 >
-                  Delete
+                  Delete<font-awesome-icon
+                    class="float-right"
+                    icon="trash-alt"
+                    id="trash-alt"
+                  />
                 </button>
               </t-dropdown>
             </td>
@@ -89,6 +97,16 @@
 import { getGames } from "../domain/services/gamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import CheckButton from "../components/checkButton/CheckButton";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(faPencilAlt);
+library.add(faTrashAlt);
+
 export default {
   name: "Inventory",
   data() {
@@ -103,7 +121,8 @@ export default {
   },
   components: {
     UserDropdown,
-    CheckButton
+    CheckButton,
+    FontAwesomeIcon
   },
   methods: {
     setPages() {
