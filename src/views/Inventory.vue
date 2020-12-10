@@ -1,12 +1,12 @@
 <template>
-  <div class="flex h-screen cont w-full border-4">
+  <div class="flex h-screen cont w-full">
     <div class="mt-36 ml-8 w-1/6 absolute">
       <t-input placeholder="Search game..." name="my-input" v-model="search" />
       <CheckButton v-model="checkedValue" class="mt-10" />
     </div>
     <UserDropdown />
 
-    <div class="ml-80 mt-7 w-5/6 border-2 border-black">
+    <div class="ml-80 mt-7 w-5/6">
       <img
         class="object-contain h-24 w-full mb-5"
         src="../assets/images/logo.png"

@@ -6,7 +6,8 @@ import VueTailwind from "vue-tailwind";
 const settings = {
   TTable: {
     classes: {
-      table: "shadow w-11/12 ml-28 divide-y divide-gray-200",
+      table:
+        "shadow w-11/12 ml-28 divide-y divide-gray-200 border-2 border-black",
       tbody: "bg-white divide-y divide-gray-200",
       td: "px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700",
       theadTh:
