@@ -33,5 +33,6 @@ export default {
 .cont {
   background-image: url("../assets/images/wave.svg");
   background-repeat: no-repeat;
+  background-position: top;
 }
 </style>
