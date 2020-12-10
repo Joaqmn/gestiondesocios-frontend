@@ -1,6 +1,7 @@
 <template>
   <div class="dropdown inline-block relative">
     <button
+      aria-label="buttonHover"
       class="w-48 h-14 bg-red-800 text-white font-semibold py-2 px-4 rounded inline-flex items-center"
     >
       <span
@@ -27,13 +28,24 @@
 </template>
 
 <script>
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlug } from "@fortawesome/free-solid-svg-icons";
+import { faAlignJustify } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(faUserCircle);
+library.add(faAlignJustify);
+library.add(faPlug);
+
 export default {
   name: "UserDropdown",
   data: function() {
     return {
       userName: "Joaquín"
     };
-  }
+  },
+  components: { FontAwesomeIcon }
 };
 </script>
 
