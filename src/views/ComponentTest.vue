@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import GameCarousel from "../components/GameCarousel.vue";
+import GameCarousel from "../components/GameCarousel/GameCarousel.vue";
 export default {
   name: "ComponentTest",
   components: {
