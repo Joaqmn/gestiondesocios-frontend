@@ -34,10 +34,10 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx", "testSetupFile.ts"
+    "tests/**/*.tsx",
+    "testSetupFile.ts"
   ],
   "exclude": [
     "node_modules"
   ],
-  
 }
