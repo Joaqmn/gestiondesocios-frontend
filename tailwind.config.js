@@ -10,8 +10,8 @@ module.exports = {
   plugins: [],
   purge: {
     content: [
-      "./public//*.html",
-      "./src//.vue",
+      "./public/**/*.html",
+      "./src/**/*.vue",
       "./src/main.ts",
       "node_modules/vue-tailwind/dist/.ts"
     ],
