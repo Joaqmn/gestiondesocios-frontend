@@ -1,6 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import VueRouter from "vue-router";
+import VueSplide from "@splidejs/vue-splide";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "@/assets/css/tailwind.css";
 import VueTailwind from "vue-tailwind";
 const settings = {
@@ -43,12 +45,13 @@ Vue.config.productionTip = false;
 
 import Inventory from "./views/Inventory.vue";
 import NotFound from "./views/NotFound.vue";
-Vue.use(VueTailwind, settings);
+import ComponentTest from "./views/ComponentTest.vue";
 Vue.use(VueRouter);
 const routes = [
   { path: "/", component: App, name: "main", redirect: "/login" },
   { path: "/login", component: App, name: "login" },
-  { path: "/inventory", component: Inventory, name: "inventory" }
+  { path: "/inventory", component: Inventory, name: "inventory" },
+  { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" }
 ];
 
 const router = new VueRouter({
@@ -74,4 +77,11 @@ new Vue({
   render(h) {
     return h((this as any).ViewComponent);
   }
+});
+
+Vue.use(VueSplide);
+
+new Vue({
+  el: "#app",
+  render: h => h(App)
 });
