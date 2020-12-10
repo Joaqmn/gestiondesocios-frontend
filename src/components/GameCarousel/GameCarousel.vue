@@ -15,7 +15,7 @@
 
 <script>
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import { createSlides } from "../utils/slides.js";
+import { createSlides } from ".../utils/slides.js";
 export default {
   name: "GameCarousel",
   components: {
