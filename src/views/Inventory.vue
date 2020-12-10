@@ -2,6 +2,7 @@
   <div class="flex h-screen cont w-full border-4">
     <div class="mt-36 ml-8 w-1/6 absolute">
       <t-input placeholder="Search game..." name="my-input" v-model="search" />
+      <CheckButton v-model="checkedValue" class="mt-10" />
     </div>
     <UserDropdown />
 
@@ -87,6 +88,7 @@
 <script>
 import { getGames } from "../domain/services/gamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
+import CheckButton from "../components/checkButton/CheckButton";
 export default {
   name: "Inventory",
   data() {
@@ -95,11 +97,13 @@ export default {
       games: [],
       currentPage: 1,
       perPage: 12,
-      pages: []
+      pages: [],
+      checkedValue: 1
     };
   },
   components: {
-    UserDropdown
+    UserDropdown,
+    CheckButton
   },
   methods: {
     setPages() {
@@ -118,11 +122,22 @@ export default {
   },
   computed: {
     displayedPosts() {
-      return this.paginate(this.filteredList);
+      return this.paginate(this.filteredDisponibility);
     },
     filteredList() {
       return this.games.filter(game => {
         return game.game_name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+    filteredDisponibility() {
+      return this.filteredList.filter(game => {
+        if (this.checkedValue === 1) {
+          return game;
+        } else if (this.checkedValue === 2) {
+          return game.disponibility == true;
+        } else {
+          return game.disponibility == false;
+        }
       });
     }
   },

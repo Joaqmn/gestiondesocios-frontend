@@ -31,6 +31,8 @@
           id="checkbutton2"
           class="opacity-0 absolute"
           @click="button2Check()"
+          v-bind:value="value"
+          v-on:input="button2Check()"
         />
         <svg
           class="fill-current hidden w-4 h-4 text-red-800 pointer-events-none"
@@ -67,19 +69,22 @@
 <script>
 export default {
   name: "CheckButton",
-
+  props: ["value"],
   methods: {
     button1Check() {
       document.getElementById("checkbutton2").checked = false;
       document.getElementById("checkbutton3").checked = false;
+      this.$emit("input", 1);
     },
     button2Check() {
       document.getElementById("checkbutton1").checked = false;
       document.getElementById("checkbutton3").checked = false;
+      this.$emit("input", 2);
     },
     button3Check() {
       document.getElementById("checkbutton1").checked = false;
       document.getElementById("checkbutton2").checked = false;
+      this.$emit("input", 3);
     }
   }
 };
