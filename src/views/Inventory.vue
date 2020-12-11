@@ -33,7 +33,7 @@
               {{ row.game_name }}
             </td>
             <td :class="[tdClass]">
-              {{ row.rating }}
+              {{ parseFloat(row.rating).toFixed(2) }}
             </td>
             <td :class="[tdClass]">
               {{ row.id_owner }}
