@@ -7,6 +7,7 @@
         <input
           aria-label="inputTodos"
           checked="true"
+          disabled="true"
           type="checkbox"
           id="checkbutton1"
           class="opacity-0 absolute"
@@ -72,20 +73,30 @@ export default {
   props: ["value"],
   methods: {
     button1Check() {
+      document.getElementById("checkbutton1").disabled = true;
+      document.getElementById("checkbutton2").disabled = false;
+      document.getElementById("checkbutton3").disabled = false;
       document.getElementById("checkbutton2").checked = false;
       document.getElementById("checkbutton3").checked = false;
       this.$emit("input", 1);
     },
     button2Check() {
+      document.getElementById("checkbutton2").disabled = true;
+      document.getElementById("checkbutton1").disabled = false;
+      document.getElementById("checkbutton3").disabled = false;
       document.getElementById("checkbutton1").checked = false;
       document.getElementById("checkbutton3").checked = false;
       this.$emit("input", 2);
     },
     button3Check() {
+      document.getElementById("checkbutton3").disabled = true;
+      document.getElementById("checkbutton1").disabled = false;
+      document.getElementById("checkbutton2").disabled = false;
       document.getElementById("checkbutton1").checked = false;
       document.getElementById("checkbutton2").checked = false;
       this.$emit("input", 3);
-    }
+    },
+    
   }
 };
 </script>

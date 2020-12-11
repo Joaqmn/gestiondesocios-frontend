@@ -6,7 +6,7 @@
     </div>
     <UserDropdown />
 
-    <div class="ml-80 mt-7 w-5/6">
+    <div class="2xl:ml-80 xl:ml-48  mt-7 w-5/6">
       <img
         class="object-contain h-24 w-full mb-5"
         src="../assets/images/logo.png"
@@ -45,7 +45,7 @@
               {{ row.disponibility }}
             </td>
             <td :class="[tdClass, 'text-right']">
-              <t-dropdown>
+              <t-dropdown class="origin-top-left">
                 <template slot="button">
                   <svg
                     version="1.1"
@@ -63,12 +63,20 @@
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
                 >
-                  Edit
+                  Edit<font-awesome-icon
+                    class="float-right"
+                    icon="pencil-alt"
+                    id="pencil-alt"
+                  />
                 </button>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
                 >
-                  Delete
+                  Delete<font-awesome-icon
+                    class="float-right"
+                    icon="trash-alt"
+                    id="trash-alt"
+                  />
                 </button>
               </t-dropdown>
             </td>
@@ -89,6 +97,16 @@
 import { getGames } from "../domain/services/gamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import CheckButton from "../components/checkButton/CheckButton";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(faPencilAlt);
+library.add(faTrashAlt);
+
 export default {
   name: "Inventory",
   data() {
@@ -96,14 +114,15 @@ export default {
       search: "",
       games: [],
       currentPage: 1,
-      perPage: 12,
+      perPage: 10,
       pages: [],
       checkedValue: 1
     };
   },
   components: {
     UserDropdown,
-    CheckButton
+    CheckButton,
+    FontAwesomeIcon
   },
   methods: {
     setPages() {
@@ -139,6 +158,15 @@ export default {
           return game.disponibility == false;
         }
       });
+    },
+    formattedSrc() {
+      const screenWidth = screen.width;
+      console.log(screenWidth);
+      if (screenWidth > 1200) {
+        return 10; //function to transform your src to large
+      } else {
+        return 15;
+      }
     }
   },
   watch: {

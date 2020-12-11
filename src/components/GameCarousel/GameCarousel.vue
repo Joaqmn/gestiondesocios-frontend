@@ -5,17 +5,15 @@
         <img :src="slide.src" alt="slide.alt" />
       </splide-slide>
     </splide>
-    <a
-      class="align-top justify-center font-Nunito font-semibold"
-      href=""
-      >{{ gameName }}</a
-    >
+    <a class="align-top justify-center font-Nunito font-semibold" href="">{{
+      gameName
+    }}</a>
   </div>
 </template>
 
 <script>
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import { createSlides } from "../utils/slides.js";
+import { createSlides } from "../../utils/slides.js";
 export default {
   name: "GameCarousel",
   components: {

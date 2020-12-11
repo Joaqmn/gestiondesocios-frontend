@@ -1,6 +1,6 @@
 <template>
-  <div class="md:flex md:h-screen cont">
-    <div class="md:m-auto w-80">
+  <div class="flex h-screen cont">
+    <div class="m-auto w-80">
       <img class="object-contain h-48 w-full" src="../assets/images/logo.png" />
       <InputText
         typeInput="text"
@@ -33,5 +33,6 @@ export default {
 .cont {
   background-image: url("../assets/images/wave.svg");
   background-repeat: no-repeat;
+  background-position: top;
 }
 </style>
