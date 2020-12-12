@@ -33,7 +33,7 @@
               {{ row.game_name }}
             </td>
             <td :class="[tdClass]">
-              {{ parseFloat(row.rating).toFixed(2) }}
+              {{ row.rating }}
             </td>
             <td :class="[tdClass]">
               {{ row.id_owner }}
@@ -97,16 +97,12 @@
 import { getGames } from "../domain/services/gamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import CheckButton from "../components/checkButton/CheckButton";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
 library.add(faPencilAlt);
 library.add(faTrashAlt);
-
 export default {
   name: "Inventory",
   data() {
