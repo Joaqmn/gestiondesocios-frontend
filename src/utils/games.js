@@ -6,4 +6,14 @@ export default class Game {
       .get("https://api.chimaera.games/api/games")
       .then(response => response);
   }
+  async getGame(id) {
+    const url = "https://api.chimaera.games/api/games/" + id;
+    return await axios.get(url).then(response => response);
+  }
+
+  async updateGame(id, body) {
+    return await axios
+      .put("https://api.chimaera.games/api/games/" + id, body)
+      .then(response => response);
+  }
 }

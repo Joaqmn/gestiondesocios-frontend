@@ -62,6 +62,7 @@
                 </template>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
+                  @click="editPage(row.id)"
                 >
                   Edit<font-awesome-icon
                     class="float-right"
@@ -125,6 +126,10 @@ export default {
     FontAwesomeIcon
   },
   methods: {
+    editPage: function(id) {
+      window.location.href = "/edit?id=" + id;
+      console.log("you have clicked me" + id);
+    },
     setPages() {
       const numberOfPages = Math.ceil(this.games.length / this.perPage);
       for (let index = 1; index <= numberOfPages; index++) {
