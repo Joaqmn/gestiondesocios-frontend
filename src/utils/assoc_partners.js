@@ -24,7 +24,7 @@ export default class Partners {
 
   async updatePartner(ID) {
     return await axios
-      .update("https://api.chimaera.games/api/assoc_partners/" + ID)
+      .put("https://api.chimaera.games/api/assoc_partners/" + ID)
       .then(response => response);
   }
 }

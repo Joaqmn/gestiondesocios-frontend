@@ -12,9 +12,9 @@ export const getPartner = async (id) => {
   return data;
 };
 
-export const insertPartner = async (id) => {
+export const insertPartner = async (id, body) => {
   const partners = new Partners();
-  const data = await partners.insertPartner(id);
+  const data = await partners.insertPartner(id, body);
   return data;
 };
 
@@ -24,8 +24,8 @@ export const deletePartner = async (id) => {
   return data;
 };
 
-export const updatePartner = async (id) => {
+export const updatePartner = async (id, body) => {
   const partners = new Partners();
-  const data = await partners.updatePartner(id);
+  const data = await partners.updatePartner(id, body);
   return data;
 };
