@@ -6,25 +6,25 @@ export default class Partners {
       .get("https://api.chimaera.games/api/assoc_partners")
       .then(response => response);
   }
-  async getPartner(ID) {
+  async getPartner(id) {
     return await axios
-      .get("https://api.chimaera.games/api/assoc_partners/" + ID)
+      .get("https://api.chimaera.games/api/assoc_partners/" + id)
       .then(response => response);
   }
-  async insertPartner(ID) {
+  async insertPartner(id) {
     return await axios
-      .post("https://api.chimaera.games/api/assoc_partners/" + ID)
+      .post("https://api.chimaera.games/api/assoc_partners/" + id)
       .then(response => response);
   }
-  async deletePartner(ID) {
+  async deletePartner(id) {
     return await axios
-      .delete("https://api.chimaera.games/api/assoc_partners/" + ID)
+      .delete("https://api.chimaera.games/api/assoc_partners/" + id)
       .then(response => response);
   }
 
-  async updatePartner(ID) {
+  async updatePartner(id) {
     return await axios
-      .put("https://api.chimaera.games/api/assoc_partners/" + ID)
+      .put("https://api.chimaera.games/api/assoc_partners/" + id)
       .then(response => response);
   }
 }

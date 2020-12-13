@@ -6,14 +6,14 @@ export default class BorrowedGames {
       .get("https://api.chimaera.games/api/borrowedgames")
       .then(response => response);
   }
-  async insertBorrowedGame(ID) {
+  async insertBorrowedGame(id) {
     return await axios
-      .post("https://api.chimaera.games/api/borrowedgames/" + ID)
+      .post("https://api.chimaera.games/api/borrowedgames/" + id)
       .then(response => response);
   }
-  async deleteBorrowedGame(ID) {
+  async deleteBorrowedGame(id) {
     return await axios
-      .delete("https://api.chimaera.games/api/borrowedgames/" + ID)
+      .delete("https://api.chimaera.games/api/borrowedgames/" + id)
       .then(response => response);
   }
 }

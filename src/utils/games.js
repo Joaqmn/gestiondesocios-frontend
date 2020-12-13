@@ -6,25 +6,25 @@ export default class Game {
       .get("https://api.chimaera.games/api/games")
       .then(response => response);
   }
-  async getGame(ID) {
+  async getGame(id) {
     return await axios
-      .get("https://api.chimaera.games/api/games/" + ID)
+      .get("https://api.chimaera.games/api/games/" + id)
       .then(response => response);
   }
-  async insertGame(ID) {
+  async insertGame(id) {
     return await axios
-      .post("https://api.chimaera.games/api/games/" + ID)
+      .post("https://api.chimaera.games/api/games/" + id)
       .then(response => response);
   }
-  async deleteGame(ID) {
+  async deleteGame(id) {
     return await axios
-      .delete("https://api.chimaera.games/api/games/" + ID)
+      .delete("https://api.chimaera.games/api/games/" + id)
       .then(response => response);
   }
 
-  async updateGame(ID) {
+  async updateGame(id) {
     return await axios
-      .update("https://api.chimaera.games/api/games/" + ID)
+      .update("https://api.chimaera.games/api/games/" + id)
       .then(response => response);
   }
 }
