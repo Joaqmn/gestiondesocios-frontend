@@ -1,7 +1,11 @@
 <template>
   <div class="flex h-screen cont w-full">
     <div class="mt-36 ml-8 w-1/6 absolute">
-      <t-input placeholder="Search game..." name="my-input" v-model="search" />
+      <t-input
+        placeholder="Buscar juego por nombre..."
+        name="my-input"
+        v-model="search"
+      />
       <CheckButton v-model="checkedValue" class="mt-10" />
     </div>
     <UserDropdown />
@@ -15,11 +19,11 @@
         variant="thin"
         :headers="[
           'ID',
-          'Name',
-          'Rating',
-          'ID Owner',
-          'Date Creation',
-          'Disponibility',
+          'Nombre',
+          'Puntuación',
+          'ID Dueño',
+          'Fecha entrada',
+          'Disponibilidad',
           ''
         ]"
         :data="displayedPosts"
@@ -33,7 +37,7 @@
               {{ row.game_name }}
             </td>
             <td :class="[tdClass]">
-              {{ row.rating }}
+              {{ parseFloat(row.rating).toFixed(2) }}
             </td>
             <td :class="[tdClass]">
               {{ row.id_owner }}
@@ -42,7 +46,7 @@
               {{ row.entry_date }}
             </td>
             <td :class="[tdClass]">
-              {{ row.disponibility }}
+              {{ row.disponibility == true ? "Disponible" : "No Disponible" }}
             </td>
             <td :class="[tdClass, 'text-right']">
               <t-dropdown class="origin-top-left">
@@ -64,7 +68,7 @@
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
                   @click="goToEditPage(row.id)"
                 >
-                  Edit<font-awesome-icon
+                  Editar<font-awesome-icon
                     class="float-right"
                     icon="pencil-alt"
                     id="pencil-alt"
@@ -74,7 +78,7 @@
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
                   @click="deleteGameRow(row.id)"
                 >
-                  Delete<font-awesome-icon
+                  Borrar<font-awesome-icon
                     class="float-right"
                     icon="trash-alt"
                     id="trash-alt"
@@ -133,12 +137,12 @@ export default {
     },
     deleteGameRow: function(id) {
       Swal.fire({
-        title: "User, are you sure?",
-        text: "You can't revert your action",
+        title: "Usuario, estás seguro?",
+        text: "Esta acción no se puede revertir",
         type: "warning",
         showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, keep it!",
+        confirmButtonText: "Sí, bórralo",
+        cancelButtonText: "No, lo guardo",
         showCloseButton: true,
         showLoaderOnConfirm: true
       }).then(result => {
@@ -147,20 +151,20 @@ export default {
             if (resp.status === 200) {
               Swal.fire(
                 "Deleted",
-                "You successfully deleted this file",
+                "El juego se ha eliminado correctamente",
                 "success"
               );
               window.location.href = "/inventory";
             } else {
               Swal.fire(
                 "Error",
-                "Error removing the game, try again later.",
+                "Error eliminando el juego, inténtalo más tarde.",
                 "error"
               );
             }
           });
         } else {
-          Swal.fire("Cancelled", "Your game is still intact", "info");
+          Swal.fire("Cancelado", "El juego sigue intacto", "info");
         }
       });
     },
