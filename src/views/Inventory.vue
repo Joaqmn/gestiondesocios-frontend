@@ -62,7 +62,7 @@
                 </template>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
-                  @click="editPage(row.id)"
+                  @click="goToEditPage(row.id)"
                 >
                   Edit<font-awesome-icon
                     class="float-right"
@@ -72,6 +72,7 @@
                 </button>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
+                  @click="deleteGameRow(row.id)"
                 >
                   Delete<font-awesome-icon
                     class="float-right"
@@ -95,15 +96,15 @@
 </template>
 
 <script>
-import { getGames } from "../domain/services/gamesServices";
+import { getGames, deleteGame } from "../domain/services/gamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import CheckButton from "../components/checkButton/CheckButton";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Swal from "sweetalert2";
 
 library.add(faPencilAlt);
 library.add(faTrashAlt);
@@ -126,9 +127,42 @@ export default {
     FontAwesomeIcon
   },
   methods: {
-    editPage: function(id) {
+    goToEditPage: function(id) {
       window.location.href = "/edit?id=" + id;
       console.log("you have clicked me" + id);
+    },
+    deleteGameRow: function(id) {
+      Swal.fire({
+        title: "User, are you sure?",
+        text: "You can't revert your action",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, keep it!",
+        showCloseButton: true,
+        showLoaderOnConfirm: true
+      }).then(result => {
+        if (result.isConfirmed) {
+          deleteGame(id).then(resp => {
+            if (resp.status === 200) {
+              Swal.fire(
+                "Deleted",
+                "You successfully deleted this file",
+                "success"
+              );
+              window.location.href = "/inventory";
+            } else {
+              Swal.fire(
+                "Error",
+                "Error removing the game, try again later.",
+                "error"
+              );
+            }
+          });
+        } else {
+          Swal.fire("Cancelled", "Your game is still intact", "info");
+        }
+      });
     },
     setPages() {
       const numberOfPages = Math.ceil(this.games.length / this.perPage);

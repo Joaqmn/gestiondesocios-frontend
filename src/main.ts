@@ -1,5 +1,4 @@
 import Vue from "vue";
-import App from "./App.vue";
 import VueRouter from "vue-router";
 import VueSplide from "@splidejs/vue-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";

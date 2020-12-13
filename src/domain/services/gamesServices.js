@@ -17,3 +17,8 @@ export const updateGame = async (id, body) => {
   const data = await game.updateGame(id, body);
   return data;
 };
+export const deleteGame = async id => {
+  const games = new Game();
+  const data = await games.deleteGame(id);
+  return data;
+};

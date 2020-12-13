@@ -51,23 +51,43 @@ export default {
     },
     updateGameAPI() {
       this.updatedGame.rating = parseFloat(this.updatedGame.rating);
-      updateGame(this.updatedGame.id, this.updatedGame).then(response => {
-        if (response.status === 200) {
-          Swal.fire("Hey user!", "Game was updated correctly!", "success").then(
-            result => {
+      if (this.checkErrors()) {
+        updateGame(this.updatedGame.id, this.updatedGame).then(response => {
+          if (response.status === 200) {
+            Swal.fire(
+              "Hey user!",
+              "Game was updated correctly!",
+              "success"
+            ).then(result => {
               if (result.isConfirmed) {
                 window.location.href = "/inventory";
               }
-            }
-          );
-        } else {
-          Swal.fire(
-            "Hey user!",
-            "There was an error, check all the data",
-            "error"
-          );
-        }
-      });
+            });
+          } else {
+            Swal.fire(
+              "Hey user!",
+              "There was an error connecting to the API",
+              "error"
+            );
+          }
+        });
+      }
+    },
+    checkErrors() {
+      const regexDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/;
+      if (
+        this.updatedGame.rating < 0 ||
+        this.updatedGame.rating > 10 ||
+        regexDate.test(this.updatedGame.entry_date) === false
+      ) {
+        Swal.fire(
+          "Hey user!",
+          "There was an error, check all the data",
+          "error"
+        );
+        return false;
+      }
+      return true;
     }
   },
   watch: {
