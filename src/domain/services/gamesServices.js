@@ -12,9 +12,9 @@ export const getGame = async (id) => {
   return data;
 };
 
-export const insertGame = async (id) => {
+export const insertGame = async (id, body) => {
   const game = new Game();
-  const data = await game.insertGame(id);
+  const data = await game.insertGame(id, body);
   return data;
 };
 
@@ -24,8 +24,8 @@ export const deleteGame = async (id) => {
   return data;
 };
 
-export const updateGame = async (id) => {
+export const updateGame = async (id, body) => {
   const game = new Game();
-  const data = await game.updateGame(id);
+  const data = await game.updateGame(id, body);
   return data;
 };

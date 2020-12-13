@@ -6,9 +6,9 @@ export const getBorrowedGames = async () => {
   return data;
 };
 
-export const insertBorrowedGames = async (id) => {
+export const insertBorrowedGames = async (id, body) => {
   const borrowedGames = new BorrowedGames();
-  const data = await borrowedGames.insertBorrowedGames(id);
+  const data = await borrowedGames.insertBorrowedGames(id, body);
   return data;
 };
 
