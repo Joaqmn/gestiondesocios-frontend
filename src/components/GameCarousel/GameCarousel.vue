@@ -5,7 +5,7 @@
         <img :src="slide.src" alt="slide.alt" />
       </splide-slide>
     </splide>
-    <a class="align-top justify-center font-Nunito font-semibold" href="">{{
+    <a id="game" class="font-Nunito font-semibold" href="">{{
       gameName
     }}</a>
   </div>
@@ -44,9 +44,13 @@ export default {
 <style>
 #carouselContainer {
   width: 400px;
-  height: 260px;
+  height: 235px;
   box-shadow: 3px 3px 10px #666;
   border: 11px outset #a42417;
   border-radius: 23px;
+}
+
+#game {
+  transform:translateX(40px);
 }
 </style>
