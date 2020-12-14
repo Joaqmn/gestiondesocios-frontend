@@ -2,26 +2,26 @@ import axios from "axios";
 
 const basePath = "https://api.chimaera.games/api";
 export default class Game {
-  async getGames() {
+  async getAll() {
     return await axios.get("${basePath}/games").then(response => response);
   }
-  async getGame(id) {
+  async get(id) {
     return await axios
       .get("${basePath}/games/" + id)
       .then(response => response);
   }
-  async insertGame(id, body) {
+  async insert(id, body) {
     return await axios
       .post("${basePath}/games/" + id, body)
       .then(response => response);
   }
-  async deleteGame(id) {
+  async delete(id) {
     return await axios
       .delete("${basePath}/games/" + id)
       .then(response => response);
   }
 
-  async updateGame(id, body) {
+  async update(id, body) {
     return await axios
       .update("${basePath}/games/" + id, body)
       .then(response => response);
