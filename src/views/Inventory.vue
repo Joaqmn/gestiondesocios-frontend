@@ -103,7 +103,6 @@
 import { getGames, deleteGame } from "../domain/services/gamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import CheckButton from "../components/checkButton/CheckButton";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -112,7 +111,6 @@ import Swal from "sweetalert2";
 
 library.add(faPencilAlt);
 library.add(faTrashAlt);
-
 export default {
   name: "Inventory",
   data() {
