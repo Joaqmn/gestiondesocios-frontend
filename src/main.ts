@@ -1,10 +1,10 @@
 import Vue from "vue";
-import App from "./App.vue";
 import VueRouter from "vue-router";
 import VueSplide from "@splidejs/vue-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "@/assets/css/tailwind.css";
 import VueTailwind from "vue-tailwind";
+
 const settings = {
   TTable: {
     classes: {
@@ -35,9 +35,59 @@ const settings = {
   },
   TInput: {
     fixedClasses:
-      "w-5/6 h-8 px-3 py-2 transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed",
+      "w-full h-8 px-3 py-2 transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed",
     classes:
       "text-black placeholder-gray-400 bg-white border-gray-300 focus:border-blue-500 "
+  },
+  TInputGroup: {
+    fixedClasses: {
+      wrapper: "",
+      label: "block",
+      body: "",
+      feedback: " text-sm text-sm",
+      description: "text-gray-400 text-sm"
+    },
+    classes: {
+      wrapper: "",
+      label: "",
+      body: "",
+      feedback: "text-gray-400",
+      description: "text-gray-400"
+    },
+    variants: {
+      danger: {
+        label: "text-red-500",
+        feedback: "text-red-500"
+      },
+      success: {
+        label: "text-green-500",
+        feedback: "text-green-500"
+      }
+    }
+  },
+  TRadio: {
+    fixedClasses:
+      "transition duration-100 ease-in-out shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 focus:ring-offset-0  disabled:opacity-50 disabled:cursor-not-allowed",
+    classes: "text-blue-500 border-gray-300",
+    variants: {
+      error: "text-red-500 border-red-300",
+      success: "text-green-500 border-green-300"
+    }
+  },
+  TButton: {
+    fixedClasses:
+      "block px-4 py-2 transition duration-100 ease-in-out focus:border-red-900 focus:ring-2 focus:ring-red-900 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed",
+    classes:
+      "text-white bg-blue-500 border border-transparent shadow-sm rounded hover:bg-blue-600",
+    variants: {
+      secondary:
+        "text-gray-800 bg-white border border-gray-300 shadow-sm hover:text-gray-600",
+      error:
+        "text-white bg-red-500 border border-transparent rounded shadow-sm hover:bg-red-600",
+      success:
+        "text-white bg-green-500 border border-transparent rounded shadow-sm hover:bg-green-600",
+      link: "text-blue-500 underline hover:text-blue-600"
+    }
   }
 };
 
@@ -46,20 +96,30 @@ Vue.config.productionTip = false;
 import Inventory from "./views/Inventory.vue";
 import NotFound from "./views/NotFound.vue";
 import ComponentTest from "./views/ComponentTest.vue";
+import CreateEditGames from "./views/CreateEditGames.vue";
+import Login from "./views/Login.vue";
 Vue.use(VueTailwind, settings);
 Vue.use(VueRouter);
+
+//    //<Login />
 const routes = [
-  { path: "/", component: App, name: "main", redirect: "/login" },
-  { path: "/login", component: App, name: "login" },
+  { path: "/", component: Login, name: "main", redirect: "/login" },
+  { path: "/login", component: Login, name: "login" },
   { path: "/inventory", component: Inventory, name: "inventory" },
-  { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" }
+  //{ path: "/edit/:id", component: CreateEditGames, name: "edit", props: true },
+  { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" },
+  {
+    path: "/edit",
+    component: CreateEditGames,
+    props: (route: { query: { id: any } }) => ({ query: route.query.id })
+  }
 ];
 
 const router = new VueRouter({
   mode: "history",
   routes
 });
-
+Vue.use(VueSplide);
 new Vue({
   router,
   el: "#app",
@@ -78,11 +138,4 @@ new Vue({
   render(h) {
     return h((this as any).ViewComponent);
   }
-});
-
-Vue.use(VueSplide);
-
-new Vue({
-  el: "#app",
-  render: h => h(App)
 });

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <Login />
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -14,9 +12,7 @@ export default {
       title: "Estas en App.vue"
     };
   },
-  components: {
-    Login
-  }
+  components: {}
 };
 </script>
 
