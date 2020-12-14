@@ -49,7 +49,7 @@
               {{ row.disponibility == true ? "Disponible" : "No Disponible" }}
             </td>
             <td :class="[tdClass, 'text-right']">
-              <t-dropdown class="origin-top-left">
+              <t-dropdown>
                 <template slot="button">
                   <svg
                     version="1.1"
