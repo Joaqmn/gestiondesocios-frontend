@@ -10,9 +10,9 @@ export default class Game {
       .get(`${basePath}/games/` + id)
       .then(response => response);
   }
-  async insert(id, body) {
+  async insert(body) {
     return await axios
-      .post(`${basePath}/games/` + id, body)
+      .post(`${basePath}/games`, body)
       .then(response => response);
   }
   async delete(id) {

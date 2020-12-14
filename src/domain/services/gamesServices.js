@@ -6,19 +6,19 @@ export const getGames = async () => {
   return data;
 };
 
-export const getGame = async (id) => {
+export const getGame = async id => {
   const game = new Game();
   const data = await game.get(id);
   return data;
 };
 
-export const insertGame = async (id, body) => {
+export const insertGame = async body => {
   const game = new Game();
-  const data = await game.insert(id, body);
+  const data = await game.insert(body);
   return data;
 };
 
-export const deleteGame = async (id) => {
+export const deleteGame = async id => {
   const game = new Game();
   const data = await game.delete(id);
   return data;
