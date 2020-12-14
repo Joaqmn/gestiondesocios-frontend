@@ -54,7 +54,11 @@ const routes = [
   { path: "/login", component: App, name: "login" },
   { path: "/inventory", component: Inventory, name: "inventory" },
   { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" },
-  { path: "/partner/:id", component: Partner, name: "partner" }
+  {
+    path: "/partner",
+    component: Partner,
+    props: (route: { query: { id: any } }) => ({ query: route.query.id })
+  }
 ];
 
 const router = new VueRouter({
