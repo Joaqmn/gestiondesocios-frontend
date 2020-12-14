@@ -1,7 +1,11 @@
 <template>
   <div class="flex h-screen cont w-full">
     <div class="mt-36 ml-8 w-1/6 absolute">
-      <t-input placeholder="Search game..." name="my-input" v-model="search" />
+      <t-input
+        placeholder="Buscar juego por nombre..."
+        name="my-input"
+        v-model="search"
+      />
       <CheckButton v-model="checkedValue" class="mt-10" />
     </div>
     <UserDropdown />
@@ -15,11 +19,11 @@
         variant="thin"
         :headers="[
           'ID',
-          'Name',
-          'Rating',
-          'ID Owner',
-          'Date Creation',
-          'Disponibility',
+          'Nombre',
+          'Puntuación',
+          'ID Dueño',
+          'Fecha entrada',
+          'Disponibilidad',
           ''
         ]"
         :data="displayedPosts"
@@ -33,7 +37,7 @@
               {{ row.game_name }}
             </td>
             <td :class="[tdClass]">
-              {{ row.rating }}
+              {{ parseFloat(row.rating).toFixed(2) }}
             </td>
             <td :class="[tdClass]">
               {{ row.id_owner }}
@@ -42,7 +46,7 @@
               {{ row.entry_date }}
             </td>
             <td :class="[tdClass]">
-              {{ row.disponibility }}
+              {{ row.disponibility == true ? "Disponible" : "No Disponible" }}
             </td>
             <td :class="[tdClass, 'text-right']">
               <t-dropdown class="origin-top-left">
@@ -62,9 +66,9 @@
                 </template>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
-                  @click="editPage(row.id)"
+                  @click="goToEditPage(row.id)"
                 >
-                  Edit<font-awesome-icon
+                  Editar<font-awesome-icon
                     class="float-right"
                     icon="pencil-alt"
                     id="pencil-alt"
@@ -72,8 +76,9 @@
                 </button>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
+                  @click="deleteGameRow(row.id)"
                 >
-                  Delete<font-awesome-icon
+                  Borrar<font-awesome-icon
                     class="float-right"
                     icon="trash-alt"
                     id="trash-alt"
@@ -95,15 +100,15 @@
 </template>
 
 <script>
-import { getGames } from "../domain/services/gamesServices";
+import { getGames, deleteGame } from "../domain/services/gamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import CheckButton from "../components/checkButton/CheckButton";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Swal from "sweetalert2";
 
 library.add(faPencilAlt);
 library.add(faTrashAlt);
@@ -126,9 +131,42 @@ export default {
     FontAwesomeIcon
   },
   methods: {
-    editPage: function(id) {
+    goToEditPage: function(id) {
       window.location.href = "/edit?id=" + id;
       console.log("you have clicked me" + id);
+    },
+    deleteGameRow: function(id) {
+      Swal.fire({
+        title: "Usuario, estás seguro?",
+        text: "Esta acción no se puede revertir",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, bórralo",
+        cancelButtonText: "No, lo guardo",
+        showCloseButton: true,
+        showLoaderOnConfirm: true
+      }).then(result => {
+        if (result.isConfirmed) {
+          deleteGame(id).then(resp => {
+            if (resp.status === 200) {
+              Swal.fire(
+                "Deleted",
+                "El juego se ha eliminado correctamente",
+                "success"
+              );
+              window.location.href = "/inventory";
+            } else {
+              Swal.fire(
+                "Error",
+                "Error eliminando el juego, inténtalo más tarde.",
+                "error"
+              );
+            }
+          });
+        } else {
+          Swal.fire("Cancelado", "El juego sigue intacto", "info");
+        }
+      });
     },
     setPages() {
       const numberOfPages = Math.ceil(this.games.length / this.perPage);
