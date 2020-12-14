@@ -1,13 +1,13 @@
 <template>
-  <GameCarousel />
+  <Partner />
 </template>
 
 <script>
-import GameCarousel from "../components/GameCarousel/GameCarousel.vue";
+import Partner from "./Partner.vue";
 export default {
   name: "ComponentTest",
   components: {
-    GameCarousel
+    Partner
   }
 };
 </script>

@@ -95,8 +95,7 @@ export default {
       document.getElementById("checkbutton1").checked = false;
       document.getElementById("checkbutton2").checked = false;
       this.$emit("input", 3);
-    },
-    
+    }
   }
 };
 </script>

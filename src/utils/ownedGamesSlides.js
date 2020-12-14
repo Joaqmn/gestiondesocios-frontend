@@ -21,7 +21,6 @@ const gameArray = getGames().then(resp => {
     this.games = resp.data;
     this.games.map(function(item) {
       delete item.rating;
-      delete item.id_owner;
       delete item.entry_date;
       delete item.disponibility;
       delete item.comments;
@@ -36,9 +35,11 @@ const noIDArray = gameArray.forEach(item => {
     delete item.id;
     delete item.game_image;
     delete item.game_name;
+    delete item.id_owner;
     return item;
   } else {
     delete item.id;
+    delete item.id_owner;
   }
 });
 
