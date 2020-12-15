@@ -32,7 +32,7 @@ title: Borrowed Games endpoints
 * **Sample Call:**
 
   ```javascript
-    return await axios
+    axios
       .get(`${basePath}/borrowedgames`)
       .then(response => response);
   ```
@@ -72,7 +72,7 @@ title: Borrowed Games endpoints
 * **Sample Call:**
 
   ```javascript
-    return await axios
+    axios
       .post(`${basePath}/borrowedgames/` + id, body)
       .then(response => response);
   ```
@@ -112,7 +112,7 @@ title: Borrowed Games endpoints
 * **Sample Call:**
 
   ```javascript
-    return await axios
+    axios
       .delete(`${basePath}/borrowedgames/` + id)
       .then(response => response);
     });

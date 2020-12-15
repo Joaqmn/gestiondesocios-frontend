@@ -37,7 +37,7 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    return await axios
+    axios
       .get(`${basePath}/assoc_partners`)
       .then(response => response);
     });
@@ -75,7 +75,7 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    return await axios
+    axios
       .get(`${basePath}/assoc_partners/` + id)
       .then(response => response);
   ```
@@ -115,7 +115,7 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    return await axios
+    axios
       .post(`${basePath}/assoc_partners/` + id, body)
       .then(response => response);
   ```
@@ -155,7 +155,7 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    return await axios
+    axios
       .delete(`${basePath}/assoc_partners/` + id)
       .then(response => response);
   ```
@@ -197,7 +197,7 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    return await axios
+    axios
       .put(`${basePath}/assoc_partners/` + id, body)
       .then(response => response);
   ```
