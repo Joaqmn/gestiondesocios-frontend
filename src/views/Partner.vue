@@ -61,7 +61,11 @@
         <div id="carouselContainer" class="m-auto bg-gray-300 text-red-800">
           <splide :options="options" @splide:moved="moved">
             <splide-slide v-for="slide in slides" :key="slide.src">
-              <img :src="slide.src" alt="slide.alt" />
+              <img
+                class="h-auto w-auto"
+                :src="slide.src"
+                alt="slide.alt"
+              />
             </splide-slide>
           </splide>
           <a id="partnerName" class="text-center block">Juego: {{ Nombre }}</a>
@@ -79,11 +83,9 @@
     </div>
   </div>
 </template>
-
 <script>
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import { createSlides } from "../utils/slides.js";
 import { getGames } from "../domain/services/gamesServices";
 export default {
   name: "Partner",
@@ -104,7 +106,7 @@ export default {
         width: "100%",
         heigh: "100%"
       },
-      slides: this.gameSlides()
+      slides: []
     };
   },
   props: ["value"],
@@ -124,69 +126,60 @@ export default {
       document.getElementById("checkbutton1").checked = false;
       this.$emit("input", 2);
     },
-    getImages: function(id = this.$route.query.id) {
-      this.games.forEach(item => {
-        if (id === item.id_owner) {
-          this.urls.push(item.game_image);
-        }
-      });
+    getImages: function() {
+      const id = parseInt(this.$route.query.id);
+      this.urls = this.games
+        .filter(game => id === game.id_owner)
+        .map(game => game.game_image);
     },
-    gameSlides: function(length = this.urls.length, sig = 0) {
-      // eslint-disable-next-line prefer-spread
-      return Array.apply(null, Array(length)).map((value, index) => {
-        index = sig || index;
-
+    gameSlides: function() {
+      const slides = this.urls.map((url, index) => {
         return {
-          src: `${this.urls}?sig=${index}`,
+          src: `${url}?sig=${index}`,
           alt: `Image ${index}`
         };
       });
+      this.slides = slides;
     }
   },
+  computed: {},
   beforeMount: function() {
-    getGames().then(resp => {
-      if (resp.status === 200) {
-        this.games = resp.data;
+    getGames().then(res => {
+      if (res.status === 200) {
+        this.games = res.data;
+        this.getImages();
+        this.gameSlides();
       }
     });
-    this.getImages();
-    this.gameSlides();
   }
 };
 </script>
-
 <style scoped>
 .cont {
   background-image: url("../assets/images/wave.svg");
   background-repeat: no-repeat;
   background-position: top;
 }
-
 #carouselContainer {
-  width: 400px;
-  height: 235px;
+  width: 500px;
+  height: 500px;
   box-shadow: 3px 3px 10px #666;
   border: 11px outset #a42417;
   border-radius: 23px;
 }
-
 input:checked + svg {
   display: block;
 }
-
 #partnerContainer {
   height: 400px;
 }
-
 #partnerName {
   transform: translateY(20px);
 }
-
 #owner {
   justify-content: center;
   text-align: center;
 }
-
 #game {
   transform: translateX(40px);
 }
