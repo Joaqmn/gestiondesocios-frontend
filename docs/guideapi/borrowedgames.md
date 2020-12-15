@@ -32,14 +32,9 @@ title: Borrowed Games endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    return await axios
+      .get(`${basePath}/borrowedgames`)
+      .then(response => response);
   ```
 
 ## Insert Borrowed Game
@@ -77,14 +72,9 @@ title: Borrowed Games endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    return await axios
+      .post(`${basePath}/borrowedgames/` + id, body)
+      .then(response => response);
   ```
 
 ## Delete Borrowed Game
@@ -122,12 +112,8 @@ title: Borrowed Games endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
+    return await axios
+      .delete(`${basePath}/borrowedgames/` + id)
+      .then(response => response);
     });
   ```
