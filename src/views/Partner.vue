@@ -84,6 +84,7 @@
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { createSlides } from "../utils/slides.js";
+import { getGames } from "../domain/services/gamesServices";
 export default {
   name: "Partner",
   components: {
@@ -95,13 +96,15 @@ export default {
     return {
       Nombre: "Nombre 1",
       Owner: "Owner 1",
+      games: [],
+      urls: [],
       options: {
         rewind: true,
         gap: "1rem",
         width: "100%",
         heigh: "100%"
       },
-      slides: createSlides()
+      slides: this.gameSlides()
     };
   },
   props: ["value"],
@@ -120,7 +123,34 @@ export default {
       document.getElementById("checkbutton1").disabled = false;
       document.getElementById("checkbutton1").checked = false;
       this.$emit("input", 2);
+    },
+    getImages: function(id = this.$route.query.id) {
+      this.games.forEach(item => {
+        if (id === item.id_owner) {
+          this.urls.push(item.game_image);
+        }
+      });
+    },
+    gameSlides: function(length = this.urls.length, sig = 0) {
+      // eslint-disable-next-line prefer-spread
+      return Array.apply(null, Array(length)).map((value, index) => {
+        index = sig || index;
+
+        return {
+          src: `${this.urls}?sig=${index}`,
+          alt: `Image ${index}`
+        };
+      });
     }
+  },
+  beforeMount: function() {
+    getGames().then(resp => {
+      if (resp.status === 200) {
+        this.games = resp.data;
+      }
+    });
+    this.getImages();
+    this.gameSlides();
   }
 };
 </script>
