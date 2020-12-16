@@ -6,19 +6,19 @@ export const getPartners = async () => {
   return data;
 };
 
-export const getPartner = async (id) => {
+export const getPartner = async id => {
   const partners = new Partners();
   const data = await partners.get(id);
   return data;
 };
 
-export const insertPartner = async (id, body) => {
+export const insertPartner = async body => {
   const partners = new Partners();
-  const data = await partners.insert(id, body);
+  const data = await partners.insert(body);
   return data;
 };
 
-export const deletePartner = async (id) => {
+export const deletePartner = async id => {
   const partners = new Partners();
   const data = await partners.delete(id);
   return data;
