@@ -67,7 +67,8 @@ export default {
   name: "InputGroupGame",
   props: {
     gamesInfo: {
-      type: Object
+      type: Object,
+      required: false
     }
   },
   methods: {

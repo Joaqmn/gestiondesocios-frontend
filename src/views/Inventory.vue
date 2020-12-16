@@ -7,6 +7,7 @@
         v-model="search"
       />
       <CheckButton v-model="checkedValue" class="mt-10" />
+      <t-button @click="goToCreatePage" class="chColor">Crear juego</t-button>
     </div>
     <UserDropdown />
 
@@ -131,7 +132,10 @@ export default {
   methods: {
     goToEditPage: function(id) {
       window.location.href = "/edit?id=" + id;
-      console.log("you have clicked me" + id);
+    },
+    goToCreatePage: function() {
+      const nextID = Math.max(...this.games.map(game => game.id), 0) + 1;
+      window.location.href = "/create?nextid=" + nextID;
     },
     deleteGameRow: function(id) {
       Swal.fire({

@@ -23,6 +23,13 @@ const routes = [
   //{ path: "/edit/:id", component: CreateEditGames, name: "edit", props: true },
   { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" },
   {
+    path: "/create",
+    component: CreateEditGames,
+    props: (route: { query: { nextid: any } }) => ({
+      query: route.query.nextid
+    })
+  },
+  {
     path: "/edit",
     component: CreateEditGames,
     props: (route: { query: { id: any } }) => ({ query: route.query.id })

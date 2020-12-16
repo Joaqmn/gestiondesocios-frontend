@@ -12,7 +12,7 @@ export const insertBorrowedGames = async (id, body) => {
   return data;
 };
 
-export const deleteBorrowedGames = async (id) => {
+export const deleteBorrowedGames = async id => {
   const borrowedGames = new BorrowedGames();
   const data = await borrowedGames.delete(id);
   return data;
