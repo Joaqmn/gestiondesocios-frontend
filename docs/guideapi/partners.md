@@ -37,13 +37,9 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
+    axios
+      .get(`${basePath}/assoc_partners`)
+      .then(response => response);
     });
   ```
 
@@ -79,14 +75,9 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    axios
+      .get(`${basePath}/assoc_partners/` + id)
+      .then(response => response);
   ```
 
 ## Insert Partner
@@ -124,14 +115,9 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    axios
+      .post(`${basePath}/assoc_partners/` + id, body)
+      .then(response => response);
   ```
 
 ## Delete Partner
@@ -169,14 +155,9 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    axios
+      .delete(`${basePath}/assoc_partners/` + id)
+      .then(response => response);
   ```
 
 ## Update Partner
@@ -216,12 +197,7 @@ title: Assoc Partners endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    axios
+      .put(`${basePath}/assoc_partners/` + id, body)
+      .then(response => response);
   ```
