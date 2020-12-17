@@ -19,8 +19,8 @@ module.exports = {
         
       },
       {
-        title: 'Assoc Partners enpoints',   // required
-        path: '/guideapi/assocpartners',      // optional, link of the title, which should be an absolute path and must exist
+        title: 'Partners enpoints',   // required
+        path: '/guideapi/partners',      // optional, link of the title, which should be an absolute path and must exist
         
       }]
     }
