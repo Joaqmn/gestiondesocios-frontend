@@ -60,12 +60,12 @@
         </div>
         <div id="carouselContainer" class="m-auto bg-gray-300 text-red-800">
           <splide :options="options" @splide:moved="moved">
-            <splide-slide v-for="slide in slides" :key="slide.src">
-              <img
-                class="h-auto w-auto"
-                :src="slide.src"
-                alt="slide.alt"
-              />
+            <splide-slide
+              id="splideContainer"
+              v-for="slide in slides"
+              :key="slide.src"
+            >
+              <img id="slideImg" :src="slide.src" alt="slide.alt" />
             </splide-slide>
           </splide>
           <a id="partnerName" class="text-center block">Juego: {{ Nombre }}</a>
@@ -102,9 +102,7 @@ export default {
       urls: [],
       options: {
         rewind: true,
-        gap: "1rem",
-        width: "100%",
-        heigh: "100%"
+        gap: "1rem"
       },
       slides: []
     };
@@ -166,6 +164,14 @@ export default {
   box-shadow: 3px 3px 10px #666;
   border: 11px outset #a42417;
   border-radius: 23px;
+}
+#slideImg {
+  width: 100%;
+  height: 100%;
+}
+#splideContainer {
+  width: 478px;
+  height: 478px;
 }
 input:checked + svg {
   display: block;
