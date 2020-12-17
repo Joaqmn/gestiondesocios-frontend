@@ -7,9 +7,9 @@ export default class BorrowedGames {
       .get(`${basePath}/borrowedgames`)
       .then(response => response);
   }
-  async insert(id, body) {
+  async insert(body) {
     return await axios
-      .post(`${basePath}/borrowedgames/` + id, body)
+      .post(`${basePath}/borrowedgames`, body)
       .then(response => response);
   }
   async delete(id) {

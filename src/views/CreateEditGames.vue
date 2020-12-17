@@ -66,7 +66,6 @@ export default {
     },
     updateGameAPI() {
       this.updatedGame.rating = parseFloat(this.updatedGame.rating);
-      console.log(this.updatedGame);
       if (this.checkErrors()) {
         updateGame(this.updatedGame.id, this.updatedGame).then(response => {
           if (response.status === 200) {

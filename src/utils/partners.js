@@ -12,9 +12,9 @@ export default class Partners {
       .get(`${basePath}/assoc_partners/` + id)
       .then(response => response);
   }
-  async insert(id, body) {
+  async insert(body) {
     return await axios
-      .post(`${basePath}/assoc_partners/` + id, body)
+      .post(`${basePath}/assoc_partners`, body)
       .then(response => response);
   }
   async delete(id) {
