@@ -23,12 +23,12 @@
           class="inline-block m-auto w-64 h-64 flex-column"
         >
           <div>
-            <h2
+            <div
               id="owner"
               class="m-auto mb-4 tex-center text-red-800 font-bold font-Nunito text-lg"
             >
-              {{ Owner }}
-            </h2>
+              {{ partner[0] }}
+            </div>
             <div class="flex mt-3 mb-3">
               <label
                 for="Todos"
@@ -78,11 +78,11 @@
               </label>
             </div>
             <a id="gameInfo" class="text-center block">Juego: {{ Nombre }}</a>
-            <a id="gameInfo" class="text-center block">Juego: {{ Nombre }}</a>
             <a id="gameInfo" class="text-center block"
-              >Prestado a: {{ Nombre }}</a
+              >Juego Prestado: {{ Nombre }}</a
             >
-            <a id="gameInfo" class="text-center hidden"
+
+            <a id="gameInfo" class="text-center block"
               >Fecha de préstamo: {{ Nombre }}</a
             >
           </div>
@@ -95,6 +95,7 @@
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { getGames } from "../domain/services/gamesServices";
+import { getPartners } from "../domain/services/assocPartnersServices";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 export default {
   name: "Partner",
@@ -109,6 +110,8 @@ export default {
       Owner: "Owner 1",
       games: [],
       urls: [],
+      partners: [],
+      partner: [],
       options: {
         rewind: true,
         gap: "1rem"
@@ -147,6 +150,12 @@ export default {
         };
       });
       this.slides = slides;
+    },
+    partnerName: function() {
+      const id = parseInt(this.$route.query.id);
+      this.partner = this.partners
+        .filter(partner => id === partner.id)
+        .map(partner => partner.partner_name);
     }
   },
   computed: {},
@@ -156,6 +165,13 @@ export default {
         this.games = res.data;
         this.getImages();
         this.gameSlides();
+      }
+    });
+    getPartners().then(res => {
+      if (res.status === 200) {
+        this.partners = res.data;
+        console.log(this.partners);
+        this.partnerName();
       }
     });
   }
@@ -170,7 +186,6 @@ export default {
 #gameContainer {
   width: 900px;
   height: 665px;
-  background-color: #bb0e2e;
 }
 #carouselContainer {
   width: 500px;
