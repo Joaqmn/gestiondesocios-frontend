@@ -77,13 +77,15 @@
                 <div class="select-none">Prestados</div>
               </label>
             </div>
-            <a id="gameInfo" class="text-center block">Juego: {{ Nombre }}</a>
             <a id="gameInfo" class="text-center block"
-              >Juego Prestado: {{ Nombre }}</a
+              >Juego: {{ gameName[gameIndex] }}</a
+            >
+            <a id="gameInfo" class="text-center block"
+              >Juego Prestado: {{ gameName }}</a
             >
 
             <a id="gameInfo" class="text-center block"
-              >Fecha de préstamo: {{ Nombre }}</a
+              >Fecha de préstamo: {{ gameName }}</a
             >
           </div>
         </div>
@@ -97,6 +99,7 @@ import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { getGames } from "../domain/services/gamesServices";
 import { getPartners } from "../domain/services/assocPartnersServices";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+
 export default {
   name: "Partner",
   components: {
@@ -106,10 +109,10 @@ export default {
   },
   data() {
     return {
-      Nombre: "Nombre 1",
-      Owner: "Owner 1",
       games: [],
       urls: [],
+      gameName: [],
+      gameIndex: "0",
       partners: [],
       partner: [],
       options: {
@@ -123,6 +126,7 @@ export default {
   methods: {
     moved(splide, newIndex) {
       console.log("moved", newIndex);
+      this.gameIndex = newIndex;
     },
     button1Check() {
       document.getElementById("checkbutton1").disabled = true;
@@ -141,6 +145,13 @@ export default {
       this.urls = this.games
         .filter(game => id === game.id_owner)
         .map(game => game.game_image);
+    },
+    getGameName: function() {
+      const id = parseInt(this.$route.query.id);
+      this.gameName = this.games
+        .filter(game => id === game.id_owner)
+        .map(game => game.game_name);
+      console.log(this.gameName);
     },
     gameSlides: function() {
       const slides = this.urls.map((url, index) => {
@@ -165,6 +176,7 @@ export default {
         this.games = res.data;
         this.getImages();
         this.gameSlides();
+        this.getGameName();
       }
     });
     getPartners().then(res => {
