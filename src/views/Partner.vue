@@ -1,65 +1,14 @@
 <template>
   <div class="h-screen cont">
     <UserDropdown />
-    <div class="m-auto w-80 transform translate-y-32">
+    <div class="m-auto transform translate-y-20">
       <img class="object-contain h-48 w-full" src="../assets/images/logo.png" />
-      <div id="partnerContainer" class="m-auto">
-        <h2
-          id="owner"
-          class="m-auto tex-center text-red-800 font-bold font-Nunito text-lg"
+      <div id="gameContainer" class="m-auto rounded-lg flex mt-10">
+        <div
+          id="carouselContainer"
+          class="ml-3 bg-gray-300 text-red-800 inline-block"
         >
-          {{ Owner }}
-        </h2>
-        <div class="flex">
-          <label
-            for="Todos"
-            class="ml-auto mr-2 flex justify-start items-start"
-          >
-            <div
-              class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
-            >
-              <input
-                checked="true"
-                disabled="true"
-                type="checkbox"
-                id="checkbutton1"
-                class="opacity-0 absolute"
-                @click="button1Check()"
-              />
-              <svg
-                class="fill-current hidden w-4 h-4 text-red-800 pointer-events-none"
-                viewBox="0 0 20 20"
-              >
-                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-              </svg>
-            </div>
-            <div class="select-none">Juegos</div>
-          </label>
-          <label
-            for="Todos"
-            class="mr-auto ml-2 flex justify-start items-start"
-          >
-            <div
-              class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
-            >
-              <input
-                type="checkbox"
-                id="checkbutton2"
-                class="opacity-0 absolute"
-                @click="button2Check()"
-              />
-              <svg
-                class="fill-current hidden w-4 h-4 text-red-800 pointer-events-none"
-                viewBox="0 0 20 20"
-              >
-                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-              </svg>
-            </div>
-            <div class="select-none">Prestados</div>
-          </label>
-        </div>
-        <div id="carouselContainer" class="m-auto bg-gray-300 text-red-800">
-          <splide :options="options" @splide:moved="moved">
+          <splide :options="options" @splide:moved="moved" :slides="slides">
             <splide-slide
               id="splideContainer"
               v-for="slide in slides"
@@ -68,16 +17,75 @@
               <img id="slideImg" :src="slide.src" alt="slide.alt" />
             </splide-slide>
           </splide>
-          <a id="partnerName" class="text-center block">Juego: {{ Nombre }}</a>
-          <a id="partnerName" class="text-center block hidden"
-            >Juego: {{ Nombre }}</a
-          >
-          <a id="partnerName" class="text-center block hidden"
-            >Prestado a: {{ Nombre }}</a
-          >
-          <a id="partnerName" class="text-center block hidden"
-            >Fecha de préstamo: {{ Nombre }}</a
-          >
+        </div>
+        <div
+          id="gameInfoContainer"
+          class="inline-block m-auto w-64 h-64 flex-column"
+        >
+          <div>
+            <h2
+              id="owner"
+              class="m-auto mb-4 tex-center text-red-800 font-bold font-Nunito text-lg"
+            >
+              {{ Owner }}
+            </h2>
+            <div class="flex mt-3 mb-3">
+              <label
+                for="Todos"
+                class="ml-auto mr-2 flex justify-start items-start"
+              >
+                <div
+                  class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
+                >
+                  <input
+                    checked="true"
+                    disabled="true"
+                    type="checkbox"
+                    id="checkbutton1"
+                    class="opacity-0 absolute"
+                    @click="button1Check()"
+                  />
+                  <svg
+                    class="fill-current hidden w-4 h-4 text-red-800 pointer-events-none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                  </svg>
+                </div>
+                <div class="select-none">Juegos</div>
+              </label>
+              <label
+                for="Todos"
+                class="mr-auto ml-2 flex justify-start items-start"
+              >
+                <div
+                  class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
+                >
+                  <input
+                    type="checkbox"
+                    id="checkbutton2"
+                    class="opacity-0 absolute"
+                    @click="button2Check()"
+                  />
+                  <svg
+                    class="fill-current hidden w-4 h-4 text-red-800 pointer-events-none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                  </svg>
+                </div>
+                <div class="select-none">Prestados</div>
+              </label>
+            </div>
+            <a id="gameInfo" class="text-center block">Juego: {{ Nombre }}</a>
+            <a id="gameInfo" class="text-center block">Juego: {{ Nombre }}</a>
+            <a id="gameInfo" class="text-center block"
+              >Prestado a: {{ Nombre }}</a
+            >
+            <a id="gameInfo" class="text-center hidden"
+              >Fecha de préstamo: {{ Nombre }}</a
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -87,6 +95,7 @@
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { getGames } from "../domain/services/gamesServices";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 export default {
   name: "Partner",
   components: {
@@ -158,10 +167,15 @@ export default {
   background-repeat: no-repeat;
   background-position: top;
 }
+#gameContainer {
+  width: 900px;
+  height: 665px;
+  background-color: #bb0e2e;
+}
 #carouselContainer {
   width: 500px;
-  height: 500px;
-  box-shadow: 3px 3px 10px #666;
+  height: 665px;
+  box-shadow: 3px 3px 10px #000;
   border: 11px outset #a42417;
   border-radius: 23px;
 }
@@ -175,9 +189,6 @@ export default {
 }
 input:checked + svg {
   display: block;
-}
-#partnerContainer {
-  height: 400px;
 }
 #partnerName {
   transform: translateY(20px);
