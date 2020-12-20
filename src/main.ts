@@ -25,7 +25,7 @@ const routes = [
     path: "/partner",
     component: Partner,
   props: (route: { query: { id: any } }) => ({ query: route.query.id })
-  }
+  },
   //{ path: "/edit/:id", component: CreateEditGames, name: "edit", props: true },
   { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" },
   {
