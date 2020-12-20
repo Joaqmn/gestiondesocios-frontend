@@ -3,6 +3,7 @@
     class="w-80 font-Nunito font-bold text-white text-xl border-solid 
     rounded-md p-2 hover:bg-red-200 focus:outline-none"
     id="loginButton"
+    @click="goToInventory"
   >
     Login
   </button>
@@ -10,7 +11,12 @@
 
 <script>
 export default {
-  name: "LoginButton"
+  name: "LoginButton",
+  methods: {
+    goToInventory() {
+      window.location.href = "/inventory";
+    }
+  }
 };
 </script>
 
