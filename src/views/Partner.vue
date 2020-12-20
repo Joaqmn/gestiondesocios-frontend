@@ -43,7 +43,7 @@
                     type="checkbox"
                     id="checkbutton1"
                     class="opacity-0 absolute"
-                    @click="button1Check"
+                    @click="gamesCheck"
                   />
                   <svg
                     class="fill-current hidden w-4 h-4 text-red-800 pointer-events-none"
@@ -65,7 +65,7 @@
                     type="checkbox"
                     id="checkbutton2"
                     class="opacity-0 absolute"
-                    @click="button2Check"
+                    @click="borrowedGamesCheck"
                   />
                   <svg
                     class="fill-current hidden w-4 h-4 text-red-800 pointer-events-none"
@@ -78,15 +78,13 @@
               </label>
             </div>
             <a id="gameInfo" class="text-center block"
-              >Juego:
-              {{ ownGames[gameIndex] ? ownGames[gameIndex].game_name : "" }}</a
+              >Juego {{ !borrowed ? "" : "prestado" }}:
+              {{
+                currentGames[gameIndex] ? currentGames[gameIndex].game_name : ""
+              }}</a
             >
-            <a id="gameInfo" class="text-center block"
-              >Juego Prestado: {{ "" }}</a
-            >
-
-            <a id="gameInfo" class="text-center block"
-              >Fecha de préstamo: {{ "" }}</a
+            <a v-if="borrowed" id="gameInfo" class="text-center block"
+              >Fecha de préstamo: {{ currentGames[gameIndex].borrowDate }}</a
             >
           </div>
         </div>
@@ -101,7 +99,6 @@ import { getGames } from "../domain/services/gamesServices";
 import { getPartners } from "../domain/services/assocPartnersServices";
 import { getBorrowedGames } from "../domain/services/borrowedGamesServices";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
-
 export default {
   name: "Partner",
   components: {
@@ -111,15 +108,16 @@ export default {
   },
   data() {
     return {
-      games: [],
-      urls: [],
-      ownGames: [],
+      borrowed: false,
+      currentGames: [],
+      allGames: [],
+      allBorrowedGames: [],
+      games: [], // todos los mios
+      borrowedGames: [], //mios prestados
+      borrowedGamesIds: [],
       gameIndex: "0",
       partners: [],
       partner: [],
-      borrowedGames: [],
-      borrowedGamesIds: [],
-      partnerBorrowedGames: [],
       options: {
         rewind: true,
         gap: "1rem"
@@ -133,38 +131,42 @@ export default {
       this.gameIndex = newIndex;
       this.getBorrowedGamesId();
     },
-    button1Check() {
+    gamesCheck() {
       document.getElementById("checkbutton1").disabled = true;
       document.getElementById("checkbutton2").disabled = false;
       document.getElementById("checkbutton2").checked = false;
       this.$emit("input", 1);
+      this.currentGames = this.games;
+      this.borrowed = false;
+      this.gameSlides(false);
     },
-    button2Check() {
+    borrowedGamesCheck() {
       document.getElementById("checkbutton2").disabled = true;
       document.getElementById("checkbutton1").disabled = false;
       document.getElementById("checkbutton1").checked = false;
       this.$emit("input", 2);
-    },
-    getImages: function() {
-      const id = parseInt(this.$route.query.id);
-      this.urls = this.games
-        .filter(game => id === game.id_owner)
-        .map(game => game.game_image);
+      this.currentGames = this.borrowedGames;
+      this.borrowed = true;
+      this.gameSlides(true);
     },
     getOwnGames: function() {
       const id = parseInt(this.$route.query.id);
-      this.ownGames = this.games
+      this.games = this.allGames
         .filter(game => id === game.id_owner)
         .map(game => game);
     },
-    gameSlides: function() {
-      const slides = this.urls.map((url, index) => {
+    gameSlides: function(borrowed) {
+      const id = parseInt(this.$route.query.id);
+      const games = borrowed
+        ? this.currentGames
+        : this.currentGames.filter(game => id === game.id_owner);
+      const gameImages = games.map(game => game.game_image);
+      this.slides = gameImages.map((url, index) => {
         return {
           src: `${url}?sig=${index}`,
           alt: `Image ${index}`
         };
       });
-      this.slides = slides;
     },
     partnerName: function() {
       const id = parseInt(this.$route.query.id);
@@ -174,39 +176,44 @@ export default {
     },
     getBorrowedGamesId: function() {
       const id = parseInt(this.$route.query.id);
-      this.borrowedGamesIds = this.borrowedGames
+      this.borrowedGamesIds = this.allBorrowedGames
         .filter(borrowedGame => id === borrowedGame.id_borrower)
         .map(borrowedGame => borrowedGame.id_game);
     },
-    getOwnBorrowedGames: function() {
-      this.partnerBorrowedGames = this.borrowedGamesIds.map(borrowedGameId => {
-        return this.games.find(game => game.id === borrowedGameId) || 0;
-      });
-      console.log(this.partnerBorrowedGames);
+    getMyBorrowedGames: function() {
+      this.borrowedGames = this.borrowedGamesIds
+        .map(borrowedGameId => {
+          return this.allGames.find(game => game.id === borrowedGameId);
+        })
+        .map(game => {
+          const borrowDate = this.allBorrowedGames.find(
+            borrowGame => borrowGame.id_game === game.id
+          ).borrow_date;
+          return { ...game, borrowDate };
+        });
     }
   },
-
   computed: {},
   beforeMount: function() {
     getGames().then(res => {
       if (res.status === 200) {
-        this.games = res.data;
-        this.getImages();
-        this.gameSlides();
+        this.allGames = res.data;
         this.getOwnGames();
-      }
-    });
-    getPartners().then(res => {
-      if (res.status === 200) {
-        this.partners = res.data;
-        this.partnerName();
-      }
-    });
-    getBorrowedGames().then(res => {
-      if (res.status === 200) {
-        this.borrowedGames = res.data;
-        this.getBorrowedGamesId();
-        this.getOwnBorrowedGames();
+        this.currentGames = this.games;
+        this.gameSlides(false);
+        getBorrowedGames().then(res => {
+          if (res.status === 200) {
+            this.allBorrowedGames = res.data;
+            this.getBorrowedGamesId();
+            this.getMyBorrowedGames();
+          }
+        });
+        getPartners().then(res => {
+          if (res.status === 200) {
+            this.partners = res.data;
+            this.partnerName();
+          }
+        });
       }
     });
   }
