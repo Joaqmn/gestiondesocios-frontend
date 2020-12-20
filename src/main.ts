@@ -45,7 +45,6 @@ Vue.config.productionTip = false;
 
 import Inventory from "./views/Inventory.vue";
 import NotFound from "./views/NotFound.vue";
-import ComponentTest from "./views/ComponentTest.vue";
 import Partner from "./views/Partner.vue";
 Vue.use(VueTailwind, settings);
 Vue.use(VueRouter);
@@ -53,7 +52,6 @@ const routes = [
   { path: "/", component: App, name: "main", redirect: "/login" },
   { path: "/login", component: App, name: "login" },
   { path: "/inventory", component: Inventory, name: "inventory" },
-  { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" },
   {
     path: "/partner",
     component: Partner,
