@@ -37,14 +37,9 @@ title: Games endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    await axios
+      .get("https://api.chimaera.games/api/games" + id)
+      .then(response => response);
   ```
 
   
@@ -79,14 +74,9 @@ title: Games endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    axios.get("https://api.chimaera.games/api/games")
+    .then(response => response);
+
   ```
 
 ## Insert Game
@@ -124,14 +114,9 @@ title: Games endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    axios
+      .post(`${basePath}/games/` + id, body)
+      .then(response => response);
   ```
 
 ## Delete Game
@@ -169,14 +154,9 @@ title: Games endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    axios
+      .delete("https://api.chimaera.games/api/games" + id)
+      .then(response => response);
   ```
 
 ## Update Game
@@ -216,12 +196,7 @@ title: Games endpoints
 * **Sample Call:**
 
   ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+    axios
+      .update("https://api.chimaera.games/api/games" + id, body)
+      .then(response => response);
   ```

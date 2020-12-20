@@ -10,9 +10,9 @@ describe("CheckButton vue-test-utils", () => {
   });
   test("should check if component is checked and unchecked", async () => {
     const { getByLabelText } = render(CheckButton);
-    const checkTodos = getByLabelText("inputTodos");
-    const checkDisponible = getByLabelText("inputDisponible");
-    const checkNoDisponible = getByLabelText("inputNoDisponible");
+    const checkTodos = getByLabelText("rellenarTodosJuegos");
+    const checkDisponible = getByLabelText("rellenarJuegosDisponibles");
+    const checkNoDisponible = getByLabelText("rellenarJuegosNoDisponibles");
 
     await fireEvent.click(checkDisponible);
     expect(checkDisponible).toBeChecked();

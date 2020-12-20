@@ -1,19 +1,19 @@
-import BorrowedGames from "../../utils/borrowed_games";
+import BorrowedGames from "../../utils/borrowedGames";
 
 export const getBorrowedGames = async () => {
   const borrowedGames = new BorrowedGames();
-  const data = await borrowedGames.getBorrowedGames();
+  const data = await borrowedGames.get();
   return data;
 };
 
-export const insertBorrowedGames = async (id) => {
+export const insertBorrowedGame = async body => {
   const borrowedGames = new BorrowedGames();
-  const data = await borrowedGames.insertBorrowedGames(id);
+  const data = await borrowedGames.insert(body);
   return data;
 };
 
-export const deleteBorrowedGames = async (id) => {
+export const deleteBorrowedGame = async id => {
   const borrowedGames = new BorrowedGames();
-  const data = await borrowedGames.deleteBorrowedGames(id);
+  const data = await borrowedGames.delete(id);
   return data;
 };

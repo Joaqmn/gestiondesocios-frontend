@@ -9,6 +9,7 @@ module.exports = {
   variants: {},
   plugins: [],
   purge: {
+    enabled: false,
     content: [
       "./public/**/*.html",
       "./src/**/*.vue",

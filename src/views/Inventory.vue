@@ -1,8 +1,20 @@
 <template>
   <div class="flex h-screen cont w-full">
+    <LoadingScreen v-if="isLoading"></LoadingScreen>
+
     <div class="mt-36 ml-8 w-1/6 absolute">
-      <t-input placeholder="Search game..." name="my-input" v-model="search" />
+      <t-input
+        placeholder="Buscar juego por nombre..."
+        name="my-input"
+        v-model="search"
+      />
       <CheckButton v-model="checkedValue" class="mt-10" />
+      <t-button @click="goToCreatePage" class="chColor mt-5 w-full m-auto"
+        >Crear juego</t-button
+      >
+      <t-button @click="createPartner" class="chColor mt-2 w-full m-auto"
+        >Añadir socio</t-button
+      >
     </div>
     <UserDropdown />
 
@@ -15,11 +27,11 @@
         variant="thin"
         :headers="[
           'ID',
-          'Name',
-          'Rating',
-          'ID Owner',
-          'Date Creation',
-          'Disponibility',
+          'Nombre',
+          'Puntuación',
+          'ID Dueño',
+          'Fecha entrada',
+          'Disponibilidad',
           ''
         ]"
         :data="displayedPosts"
@@ -33,7 +45,7 @@
               {{ row.game_name }}
             </td>
             <td :class="[tdClass]">
-              {{ row.rating }}
+              {{ parseFloat(row.rating).toFixed(2) }}
             </td>
             <td :class="[tdClass]">
               {{ row.id_owner }}
@@ -42,10 +54,10 @@
               {{ row.entry_date }}
             </td>
             <td :class="[tdClass]">
-              {{ row.disponibility }}
+              {{ row.disponibility == true ? "Disponible" : "No Disponible" }}
             </td>
             <td :class="[tdClass, 'text-right']">
-              <t-dropdown class="origin-top-left">
+              <t-dropdown>
                 <template slot="button">
                   <svg
                     version="1.1"
@@ -62,8 +74,28 @@
                 </template>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
+                  @click="
+                    row.disponibility == true
+                      ? borrowGame(row.id)
+                      : returnGame(row.id)
+                  "
                 >
-                  Edit<font-awesome-icon
+                  {{
+                    row.disponibility == true
+                      ? "Prestar juego"
+                      : "Devolver juego"
+                  }}<font-awesome-icon
+                    class="float-right"
+                    :icon="
+                      row.disponibility == true ? 'door-open' : 'door-closed'
+                    "
+                  />
+                </button>
+                <button
+                  class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
+                  @click="goToEditPage(row.id)"
+                >
+                  Editar<font-awesome-icon
                     class="float-right"
                     icon="pencil-alt"
                     id="pencil-alt"
@@ -71,8 +103,9 @@
                 </button>
                 <button
                   class="block w-full px-4 py-2 text-left text-gray-800 hover:text-white hover:bg-red-800"
+                  @click="deleteGameRow(row.id)"
                 >
-                  Delete<font-awesome-icon
+                  Borrar<font-awesome-icon
                     class="float-right"
                     icon="trash-alt"
                     id="trash-alt"
@@ -94,15 +127,34 @@
 </template>
 
 <script>
-import { getGames } from "../domain/services/gamesServices";
+/* eslint-disable @typescript-eslint/camelcase */
+import { getGames, deleteGame } from "../domain/services/gamesServices";
+import {
+  insertPartner,
+  getPartners
+} from "../domain/services/partnersServices";
+import {
+  insertBorrowedGame,
+  deleteBorrowedGame
+} from "../domain/services/borrowedGamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import CheckButton from "../components/checkButton/CheckButton";
+import LoadingScreen from "../components/loadingScreen/LoadingScreen";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPencilAlt,
+  faTrashAlt,
+  faDoorOpen,
+  faDoorClosed
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Swal from "sweetalert2";
+
 library.add(faPencilAlt);
 library.add(faTrashAlt);
+library.add(faDoorClosed);
+library.add(faDoorOpen);
+
 export default {
   name: "Inventory",
   data() {
@@ -112,15 +164,149 @@ export default {
       currentPage: 1,
       perPage: 10,
       pages: [],
-      checkedValue: 1
+      checkedValue: 1,
+      partners: {},
+      isLoading: true
     };
   },
   components: {
     UserDropdown,
     CheckButton,
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    LoadingScreen
   },
   methods: {
+    borrowGame: function(id) {
+      Swal.fire({
+        title: "Selecciona el socio al que se le va a prestar el juego",
+        input: "select",
+        inputOptions: this.partners.map(partner => partner.id),
+        inputPlaceholder: "Selecciona un socio",
+        showCancelButton: true
+      }).then(result => {
+        console.log(result);
+        const borrowedGame = {
+          id_game: id,
+          id_borrower: this.partners[Number(result.value)].id,
+          borrow_date: String(this.getCurrentDate)
+        };
+        insertBorrowedGame(borrowedGame)
+          .then(response => {
+            if (response.status === 201) {
+              Swal.fire(
+                "Prestado",
+                "El juego se ha prestado correctamente",
+                "success"
+              );
+              window.location.href = "/inventory";
+            }
+          })
+          .catch(() => {
+            Swal.fire(
+              "Error",
+              "Error prestando el juego, inténtalo más tarde.",
+              "error"
+            );
+          });
+      });
+    },
+    returnGame(id) {
+      deleteBorrowedGame(id)
+        .then(response => {
+          if (response.status === 200) {
+            Swal.fire(
+              "Devuelto",
+              "El juego se ha devuelto correctamente",
+              "success"
+            );
+            window.location.href = "/inventory";
+          }
+        })
+        .catch(() => {
+          Swal.fire(
+            "Error",
+            "Error devolviendo el juego, inténtalo más tarde.",
+            "error"
+          );
+        });
+    },
+    goToEditPage: function(id) {
+      window.location.href = "/edit?id=" + id;
+    },
+    goToCreatePage: function() {
+      const nextID = Math.max(...this.games.map(game => game.id), 0) + 1;
+      window.location.href = "/create?nextid=" + nextID;
+    },
+    createPartner: function() {
+      Swal.fire({
+        title: "Crear socio",
+        input: "text",
+        inputLabel: "Inserta el nombre del nuevo socio",
+        showCancelButton: true,
+        inputValidator: value => {
+          if (!value) {
+            return "Necesitas escribir el nombre";
+          }
+        }
+      }).then(result => {
+        const nextID =
+          Math.max(...this.partners.map(partner => partner.id), 0) + 1;
+        const partner = { id: nextID, partner_name: String(result.value) };
+        insertPartner(partner)
+          .then(resp => {
+            if (resp.status === 201) {
+              Swal.fire(
+                "Insertado",
+                "El socio se ha insertado correctamente con el ID " + nextID,
+                "success"
+              );
+              window.location.href = "/inventory";
+            }
+          })
+          .catch(() => {
+            Swal.fire(
+              "Error",
+              "Error insertando el socio, inténtalo más tarde.",
+              "error"
+            );
+          });
+      });
+    },
+    deleteGameRow: function(id) {
+      Swal.fire({
+        title: "Usuario, estás seguro?",
+        text: "Esta acción no se puede revertir",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, bórralo",
+        cancelButtonText: "No, lo guardo",
+        showCloseButton: true,
+        showLoaderOnConfirm: true
+      }).then(result => {
+        if (result.isConfirmed) {
+          deleteGame(id)
+            .then(resp => {
+              if (resp.status === 200) {
+                Swal.fire(
+                  "Deleted",
+                  "El juego se ha eliminado correctamente",
+                  "success"
+                );
+                window.location.href = "/inventory";
+              }
+            })
+            .catch(() => {
+              Swal.fire(
+                "Error",
+                "Error eliminando el juego, inténtalo más tarde.",
+                "error"
+              );
+            });
+        } else {
+          Swal.fire("Cancelado", "El juego sigue intacto", "info");
+        }
+      });
+    },
     setPages() {
       const numberOfPages = Math.ceil(this.games.length / this.perPage);
       for (let index = 1; index <= numberOfPages; index++) {
@@ -155,14 +341,21 @@ export default {
         }
       });
     },
-    formattedSrc() {
-      const screenWidth = screen.width;
-      console.log(screenWidth);
-      if (screenWidth > 1200) {
-        return 10; //function to transform your src to large
-      } else {
-        return 15;
-      }
+    getCurrentDate() {
+      const actualDate = new Date(),
+        dateFormat =
+          [
+            actualDate.getFullYear(),
+            actualDate.getMonth() + 1,
+            actualDate.getDate()
+          ].join("/") +
+          " " +
+          [
+            actualDate.getHours(),
+            actualDate.getMinutes(),
+            actualDate.getSeconds()
+          ].join(":");
+      return dateFormat;
     }
   },
   watch: {
@@ -181,6 +374,11 @@ export default {
         });
       }
     });
+    getPartners().then(response => {
+      if (response.status === 200) {
+        this.partners = response.data;
+      }
+    });
   },
   filters: {
     trimWords(value) {
@@ -191,6 +389,11 @@ export default {
           .join(" ") + "..."
       );
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1500);
   }
 };
 </script>
