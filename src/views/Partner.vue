@@ -10,17 +10,16 @@
         >
           <splide :options="options" @splide:moved="moved" :slides="slides">
             <splide-slide
-              id="splideContainer"
               v-for="slide in slides"
               :key="slide.src"
             >
-              <img id="slideImg" :src="slide.src" alt="slide.alt" />
+              <img id="slideImg" :src="slide.src" alt="slide.alt" height="300"/>
             </splide-slide>
           </splide>
         </div>
         <div
           id="gameInfoContainer"
-          class="inline-block m-auto w-64 h-64 flex-column"
+          class="inline-block m-auto w/-64 h-64 flex-column"
         >
           <div>
             <div
@@ -120,7 +119,8 @@ export default {
       partner: [],
       options: {
         rewind: true,
-        gap: "1rem"
+        gap: "1rem",
+        heightRatio: 1 
       },
       slides: []
     };
@@ -231,19 +231,15 @@ export default {
 }
 #carouselContainer {
   width: 500px;
-  height: 665px;
+  height: 500px;
   box-shadow: 3px 3px 10px #000;
   border: 11px outset #a42417;
   border-radius: 23px;
 }
-#slideImg {
+/* #slideImg {
   width: 100%;
   height: 100%;
-}
-#splideContainer {
-  width: 478px;
-  height: 478px;
-}
+} */
 input:checked + svg {
   display: block;
 }
