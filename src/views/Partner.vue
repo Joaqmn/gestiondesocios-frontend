@@ -97,7 +97,7 @@
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { getGames } from "../domain/services/gamesServices";
-import { getPartners } from "../domain/services/assocPartnersServices";
+import { getPartners } from "../domain/services/partnersServices";
 import { getBorrowedGames } from "../domain/services/borrowedGamesServices";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 export default {
