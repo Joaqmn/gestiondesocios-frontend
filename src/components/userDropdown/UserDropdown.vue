@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown inline-block absolute top-2 right-8">
     <button
-      aria-label="buttonHover"
+      aria-label="irInventario"
       style="background: #bb0e2e"
       class="w-56 h-14 text-white font-semibold py-2 px-2 rounded inline-flex items-center border-2 border-white"
     >

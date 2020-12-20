@@ -5,7 +5,7 @@
         class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
       >
         <input
-          aria-label="inputTodos"
+          aria-label="rellenarTodosJuegos"
           checked="true"
           disabled="true"
           type="checkbox"
@@ -27,7 +27,7 @@
         class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
       >
         <input
-          aria-label="inputDisponible"
+          aria-label="rellenarJuegosDisponibles"
           type="checkbox"
           id="checkbutton2"
           class="opacity-0 absolute"
@@ -49,7 +49,7 @@
         class="bg-white border-2 rounded border-gray-900 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 mb-2"
       >
         <input
-          aria-label="inputNoDisponible"
+          aria-label="rellenarJuegosNoDisponibles"
           type="checkbox"
           id="checkbutton3"
           class="opacity-0 absolute"
@@ -95,8 +95,7 @@ export default {
       document.getElementById("checkbutton1").checked = false;
       document.getElementById("checkbutton2").checked = false;
       this.$emit("input", 3);
-    },
-    
+    }
   }
 };
 </script>
