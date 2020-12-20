@@ -1,5 +1,7 @@
 <template>
   <div class="flex h-screen cont w-full">
+    <LoadingScreen v-if="isLoading"></LoadingScreen>
+
     <div class="mt-36 ml-8 w-1/6 absolute">
       <t-input
         placeholder="Buscar juego por nombre..."
@@ -137,6 +139,7 @@ import {
 } from "../domain/services/borrowedGamesServices";
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import CheckButton from "../components/checkButton/CheckButton";
+import LoadingScreen from "../components/loadingScreen/LoadingScreen";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faPencilAlt,
@@ -162,13 +165,15 @@ export default {
       perPage: 10,
       pages: [],
       checkedValue: 1,
-      partners: {}
+      partners: {},
+      isLoading: true
     };
   },
   components: {
     UserDropdown,
     CheckButton,
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    LoadingScreen
   },
   methods: {
     borrowGame: function(id) {
@@ -384,6 +389,11 @@ export default {
           .join(" ") + "..."
       );
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1500);
   }
 };
 </script>
