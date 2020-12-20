@@ -10,6 +10,7 @@ Vue.config.productionTip = false;
 
 import Inventory from "./views/Inventory.vue";
 import NotFound from "./views/NotFound.vue";
+import Partner from "./views/Partner.vue";
 import ComponentTest from "./views/ComponentTest.vue";
 import CreateEditGames from "./views/CreateEditGames.vue";
 import Login from "./views/Login.vue";
@@ -20,6 +21,11 @@ const routes = [
   { path: "/", component: Login, name: "main", redirect: "/login" },
   { path: "/login", component: Login, name: "login" },
   { path: "/inventory", component: Inventory, name: "inventory" },
+  {
+    path: "/partner",
+    component: Partner,
+  props: (route: { query: { id: any } }) => ({ query: route.query.id })
+  },
   //{ path: "/edit/:id", component: CreateEditGames, name: "edit", props: true },
   { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" },
   {
