@@ -9,11 +9,13 @@
           class="ml-3 bg-gray-300 text-red-800 inline-block"
         >
           <splide :options="options" @splide:moved="moved" :slides="slides">
-            <splide-slide
-              v-for="slide in slides"
-              :key="slide.src"
-            >
-              <img id="slideImg" :src="slide.src" alt="slide.alt" height="300"/>
+            <splide-slide v-for="slide in slides" :key="slide.src">
+              <img
+                id="slideImg"
+                :src="slide.src"
+                alt="slide.alt"
+                height="300"
+              />
             </splide-slide>
           </splide>
         </div>
@@ -95,7 +97,7 @@
 import UserDropdown from "../components/userDropdown/UserDropdown";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { getGames } from "../domain/services/gamesServices";
-import { getPartners } from "../domain/services/assocPartnersServices";
+import { getPartners } from "../domain/services/partnersServices";
 import { getBorrowedGames } from "../domain/services/borrowedGamesServices";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 export default {
@@ -111,8 +113,8 @@ export default {
       currentGames: [],
       allGames: [],
       allBorrowedGames: [],
-      games: [], // todos los mios
-      borrowedGames: [], //mios prestados
+      games: [],
+      borrowedGames: [],
       borrowedGamesIds: [],
       gameIndex: "0",
       partners: [],
@@ -120,7 +122,7 @@ export default {
       options: {
         rewind: true,
         gap: "1rem",
-        heightRatio: 1 
+        heightRatio: 1
       },
       slides: []
     };
@@ -220,6 +222,7 @@ export default {
 };
 </script>
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 .cont {
   background-image: url("../assets/images/wave.svg");
   background-repeat: no-repeat;
@@ -236,10 +239,6 @@ export default {
   border: 11px outset #a42417;
   border-radius: 23px;
 }
-/* #slideImg {
-  width: 100%;
-  height: 100%;
-} */
 input:checked + svg {
   display: block;
 }

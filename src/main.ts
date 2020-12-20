@@ -11,7 +11,6 @@ Vue.config.productionTip = false;
 import Inventory from "./views/Inventory.vue";
 import NotFound from "./views/NotFound.vue";
 import Partner from "./views/Partner.vue";
-import ComponentTest from "./views/ComponentTest.vue";
 import CreateEditGames from "./views/CreateEditGames.vue";
 import Login from "./views/Login.vue";
 Vue.use(VueTailwind, settings);
@@ -26,8 +25,6 @@ const routes = [
     component: Partner,
   props: (route: { query: { id: any } }) => ({ query: route.query.id })
   },
-  //{ path: "/edit/:id", component: CreateEditGames, name: "edit", props: true },
-  { path: "/ComponentTest", component: ComponentTest, name: "ComponentTest" },
   {
     path: "/create",
     component: CreateEditGames,
