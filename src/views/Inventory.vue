@@ -47,8 +47,10 @@
             <td :class="[tdClass]">
               {{ parseFloat(row.rating).toFixed(2) }}
             </td>
-            <td :class="[tdClass]">
-              {{ row.id_owner }}
+            <td :class="[tdClass]" class="text-blue-500">
+              <a :href="'partner?id=' + row.id_owner">
+                {{ row.id_owner }}
+              </a>
             </td>
             <td :class="[tdClass]">
               {{ row.entry_date }}

@@ -53,7 +53,7 @@
                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                   </svg>
                 </div>
-                <div class="select-none">Juegos</div>
+                <div class="select-none">Juegos propios</div>
               </label>
               <label
                 for="Todos"
@@ -75,7 +75,7 @@
                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                   </svg>
                 </div>
-                <div class="select-none">Prestados</div>
+                <div class="select-none">Juegos ajenos</div>
               </label>
             </div>
             <a id="gameInfo" class="text-center block"
