@@ -14,7 +14,9 @@
                 id="slideImg"
                 :src="slide.src"
                 alt="slide.alt"
-                height="300"
+                height="500"
+                width="500"
+                style="width: 100%; height: 480px;"
               />
             </splide-slide>
           </splide>
