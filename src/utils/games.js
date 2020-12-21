@@ -23,7 +23,7 @@ export default class Game {
 
   async update(id, body) {
     return await axios
-      .update(`${basePath}/games/` + id, body)
+      .put(`${basePath}/games/` + id, body)
       .then(response => response);
   }
 }
