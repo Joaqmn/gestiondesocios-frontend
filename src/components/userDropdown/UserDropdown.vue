@@ -87,6 +87,9 @@ export default {
 .dropdown:hover > .dropdown-content {
   display: block;
 }
+.dropdown {
+  z-index: 1000;
+}
 #usercircle {
   font-size: 28px;
   float: right;

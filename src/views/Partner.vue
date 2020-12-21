@@ -80,14 +80,26 @@
                 <div class="select-none">Juegos ajenos</div>
               </label>
             </div>
-            <a id="gameInfo" class="text-center block"
-              >Juego {{ !borrowed ? "" : "prestado" }}:
-              {{
+            <a id="gameInfo" class="text-center block text-red-800 font-bold"
+              >Juego
+              {{ !borrowed ? "" : "prestado" }}
+              :
+              <span class="text-black font-semibold">{{
                 currentGames[gameIndex] ? currentGames[gameIndex].game_name : ""
-              }}</a
+              }}</span></a
             >
-            <a v-if="borrowed" id="gameInfo" class="text-center block"
-              >Fecha de préstamo: {{ currentGames[gameIndex].borrowDate }}</a
+            <a id="gameInfo" class="text-center block text-red-800 font-bold"
+              >Rating:
+              <span>{{ this.getRatingGames() }}</span>
+            </a>
+            <a
+              v-if="borrowed"
+              id="gameInfo"
+              class="text-center block text-red-800 font-bold"
+              >Fecha de préstamo:
+              <span class="text-black font-semibold">{{
+                currentGames[gameIndex].borrowDate
+              }}</span></a
             >
           </div>
         </div>
@@ -126,14 +138,29 @@ export default {
         gap: "1rem",
         heightRatio: 1
       },
-      slides: []
+      slides: [],
+      rating: 0
     };
   },
   props: ["value"],
   methods: {
     moved(splide, newIndex) {
       this.gameIndex = newIndex;
+      console.log(this.gameIndex);
       this.getBorrowedGamesId();
+    },
+    getRatingGames() {
+      let stars = "";
+      if (this.currentGames[this.gameIndex] != undefined) {
+        for (
+          let index = 0;
+          index < Math.floor(this.currentGames[this.gameIndex].rating) / 2;
+          index++
+        ) {
+          stars = stars + "⭐";
+        }
+      }
+      return stars;
     },
     gamesCheck() {
       document.getElementById("checkbutton1").disabled = true;
@@ -253,5 +280,8 @@ input:checked + svg {
 }
 #game {
   transform: translateX(40px);
+}
+a {
+  margin-top: 3%;
 }
 </style>
